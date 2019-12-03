@@ -30,17 +30,6 @@ KDC_CONF='/var/kerberos/krb5kdc/kdc.conf'
 KRB5_CONF='/etc/krb5.conf'
  
 echo $(date) >> ${LOG_FILE}
-echo -n 'Installing packages...'
-yum install -y krb5-server krb5-workstation rng-tools >> ${LOG_FILE} 2>&1
-echo 'done'
- 
-echo -n 'Setting up rng-tools...'
-cp -f /usr/lib/systemd/system/rngd.service /etc/systemd/system/
-sed -i -e 's/ExecStart=\/sbin\/rngd -f/ExecStart=\/sbin\/rngd -f -r \/dev\/urandom/' /etc/systemd/system/rngd.service
-systemctl daemon-reload >> ${LOG_FILE} 2>&1
-systemctl start rngd >> ${LOG_FILE} 2>&1
-systemctl enable rngd >> ${LOG_FILE} 2>&1
-echo 'done'
  
 # kadm5.acl
 echo -n "Configuring ${KADM5_ACL}..."
