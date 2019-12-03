@@ -166,6 +166,6 @@ yum -y install krb5-server krb5-workstation
 
 echo "If you wish, tail the log file and wait for  \": Started Jetty server\""
 echo "\"tail -f /var/log/cloudera-scm-server/cloudera-scm-server.log\""
-echo "login to CM  \"https://`hostname -f`:7183\" user:admin, pwd:admin"
+echo "login to CM  \"https://`ip route get 1 | awk '{print $NF;exit}'`:7183\" user:admin, pwd:admin"
 
 exit 0
