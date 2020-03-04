@@ -105,6 +105,8 @@ cat <<EOF > $PG_HOME_DIR/data/pg_hba.conf
   host    oozie           oozie          0.0.0.0/0                md5
   host    ranger          rangeradmin    0.0.0.0/0                md5
   host    rman            rman           0.0.0.0/0                md5
+  host    hbase           hbase          0.0.0.0/0                md5
+  host    phoenix         phoenix        0.0.0.0/0                md5  
 EOF
 
 chown postgres:postgres $PG_HOME_DIR/data/pg_hba.conf
@@ -123,6 +125,8 @@ CREATE ROLE oozie LOGIN PASSWORD 'supersecret1';
 CREATE ROLE rangeradmin LOGIN PASSWORD 'supersecret1';
 CREATE ROLE rman LOGIN PASSWORD 'supersecret1';
 CREATE ROLE scm LOGIN PASSWORD 'supersecret1';
+CREATE ROLE hbase LOGIN PASSWORD 'supersecret1';
+CREATE ROLE phoenix LOGIN PASSWORD 'supersecret1';
 CREATE DATABASE das OWNER das ENCODING 'UTF-8';
 CREATE DATABASE hive OWNER hive ENCODING 'UTF-8';
 CREATE DATABASE hue OWNER hue ENCODING 'UTF-8';
@@ -130,6 +134,8 @@ CREATE DATABASE oozie OWNER oozie ENCODING 'UTF-8';
 CREATE DATABASE ranger OWNER rangeradmin ENCODING 'UTF-8';
 CREATE DATABASE rman OWNER rman ENCODING 'UTF-8';
 CREATE DATABASE scm OWNER scm ENCODING 'UTF-8';
+CREATE DATABASE hbase OWNER hbase ENCODING 'UTF-8';
+CREATE DATABASE phoenix OWNER phoenix ENCODING 'UTF-8';
 EOF
 
 
@@ -156,16 +162,16 @@ systemctl restart chronyd
 
 
 ## Set up AutoTLS
-JAVA_HOME="$JAVA_HOME" /opt/cloudera/cm-agent/bin/certmanager --location /opt/cloudera/CMCA setup --configure-services
+#JAVA_HOME="$JAVA_HOME" /opt/cloudera/cm-agent/bin/certmanager --location /opt/cloudera/CMCA setup --configure-services
 
 ## Start the CM Server
 systemctl start cloudera-scm-server
 
 ## Install MIT Kerberos
-yum -y install krb5-server krb5-workstation
+#yum -y install krb5-server krb5-workstation
 
 echo "If you wish, tail the log file and wait for  \": Started Jetty server\""
 echo "\"tail -f /var/log/cloudera-scm-server/cloudera-scm-server.log\""
-echo "login to CM  \"https://`curl ifconfig.me`:7183\" user:admin, pwd:admin"
+echo "login to CM  \"http://`curl ifconfig.me`:7180\" user:admin, pwd:admin"
 
 exit 0
