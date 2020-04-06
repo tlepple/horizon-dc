@@ -3,7 +3,7 @@
 #####################################################
 # Function to install passwordless access to hosts
 #####################################################
-install pwdless_access() {
+install_pwdless_access() {
 
 	echo "-- Enable passwordless root login via rsa key"
 	ssh-keygen -f ~/myRSAkey -t rsa -N ""

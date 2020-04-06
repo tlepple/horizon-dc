@@ -8,4 +8,4 @@
 #####################################################
 #       Step 1: install passwordless access
 #####################################################
-install pwdless_access
+install_pwdless_access
