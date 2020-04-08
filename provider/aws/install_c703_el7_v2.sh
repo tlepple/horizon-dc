@@ -13,7 +13,9 @@ yum install -y wget
 DB_PASSWORD="supersecret1"
 
 #CLDR_MGR_BASEURL="https://archive.cloudera.com/p/cm7"
-CLDR_MGR_BASEURL="https://$CLDR_REPO_USER:$CLDR_REPO_PASS@$archive.cloudera.com/p/cm7"
+CLDR_CM_LOCATION="@archive.cloudera.com/p/cm7"
+
+CLDR_MGR_BASEURL="https://$CLDR_REPO_USER:$CLDR_REPO_PASS$CLDR_CM_LOCATION"
 
 CLDR_MGR_VER_URL="$CLDR_MGR_BASEURL/7.0.3/redhat7/yum"
 
