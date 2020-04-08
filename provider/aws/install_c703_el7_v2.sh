@@ -60,7 +60,7 @@ wget $CLDR_MGR_VER_URL/cloudera-manager.repo -P /etc/yum.repos.d/
 
 # Update the UserName and PWD in the repo here:
 sed -i "s/username=changeme/username=$CLDR_REPO_USER/g" /etc/yum.repos.d/cloudera-manager.repo
-sed -i "s/password=changeme/username=$CLDR_REPO_PASS/g" /etc/yum.repos.d/cloudera-manager.repo
+sed -i "s/password=changeme/password=$CLDR_REPO_PASS/g" /etc/yum.repos.d/cloudera-manager.repo
 
 
 ## Import the GPG Key
