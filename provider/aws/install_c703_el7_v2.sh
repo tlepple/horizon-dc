@@ -27,7 +27,8 @@ OPEN_JAVA_HOME="/usr/java/jdk1.8.0_232-cloudera"
 JDK_RPM_URL="$OPENJDK_RPM_URL"
 JAVA_HOME="$OPEN_JAVA_HOME"
 
-PG_REPO_URL="https://yum.postgresql.org/9.6/redhat/rhel-7-x86_64/pgdg-redhat96-9.6-3.noarch.rpm"
+#postgres info
+PG_REPO_URL="https://yum.postgresql.org/9.6/redhat/rhel-7-x86_64/pgdg-redhat-repo-latest.noarch.rpm"
 
 PG_HOME_DIR="/var/lib/pgsql/9.6"
 
