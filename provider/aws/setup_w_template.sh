@@ -1,13 +1,18 @@
 #!/bin/bash
-set -e -x
-## Single node C7 install
-## A bit of brute force, not the most elegant scripting
-## Based on https://docs.google.com/document/d/15_ibyJGhfdVge7jIZP_h4iA2369lC8PdCnvHYKwg9iU/edit?ts=5dd6295e#
-## Nov 22, 2019
 
+set -e -x
+
+###########################################################################################################
+## Single node CDP-DC install
+###########################################################################################################
+
+###########################################################################################################
+# Set these password for access behind paywall
+###########################################################################################################
 CLDR_REPO_USER="YourUserID"
 CLDR_REPO_PASS="YourUserPass"
 
+###########################################################################################################
 yum install -y wget
 
 DB_PASSWORD="supersecret1"
@@ -37,8 +42,9 @@ PG_HOME_DIR="/var/lib/pgsql/9.6"
 #LOCAL_TIMEZONE="America/New_York"
 LOCAL_TIMEZONE="America/Chicago"
 
-################################################
-
+###########################################################################################################
+#  Configure OS pre-reqs 4 CM
+###########################################################################################################
 
 if [ getenforce != Disabled ]
 then  setenforce 0;
@@ -59,7 +65,9 @@ echo "vm.swappiness = 10" >> /etc/sysctl.conf
 #wget $CLDR_MGR_VER_URL/cloudera-manager-trial.repo -P /etc/yum.repos.d/
 wget $CLDR_MGR_VER_URL/cloudera-manager.repo -P /etc/yum.repos.d/
 
+###########################################################################################################
 # Update the UserName and PWD in the repo here:
+###########################################################################################################
 sed -i "s/username=changeme/username=$CLDR_REPO_USER/g" /etc/yum.repos.d/cloudera-manager.repo
 sed -i "s/password=changeme/password=$CLDR_REPO_PASS/g" /etc/yum.repos.d/cloudera-manager.repo
 
@@ -67,8 +75,9 @@ sed -i "s/password=changeme/password=$CLDR_REPO_PASS/g" /etc/yum.repos.d/clouder
 ## Import the GPG Key
 rpm --import $CLDR_MGR_VER_URL/RPM-GPG-KEY-cloudera
 
-
+###########################################################################################################
 echo "-- Configure networking"
+###########################################################################################################
 PUBLIC_IP=`curl https://api.ipify.org/`
 hostnamectl set-hostname `hostname -f`
 echo "`hostname -I` `hostname`" >> /etc/hosts
@@ -78,32 +87,45 @@ systemctl stop firewalld
 setenforce 0
 sed -i 's/SELINUX=.*/SELINUX=disabled/' /etc/selinux/config
 
+###########################################################################################################
 ## Clear the yum cache
+###########################################################################################################
 yum clean all
 rm -rf /var/cache/yum/
 yum repolist
 
+###########################################################################################################
 #install java
+###########################################################################################################
 rpm -ivh $JDK_RPM_URL
 
+###########################################################################################################
 ## Install CM Server & Agent
+###########################################################################################################
 yum -y install cloudera-manager-server cloudera-manager-agent
 
+###########################################################################################################
 ## Install Postgresql repo for Redhat
+###########################################################################################################
 yum -y install $PG_REPO_URL
 
+###########################################################################################################
 ## Install PG 9.6
+###########################################################################################################
 yum -y install postgresql96-server postgresql96-contrib postgresql96 postgresql-jdbc*
 
-
+###########################################################################################################
 ## setup the jdbc connetor
+###########################################################################################################
 cp /usr/share/java/postgresql-jdbc.jar /usr/share/java/postgresql-connector-java.jar
 chmod 644 /usr/share/java/postgresql-connector-java.jar
 
 echo 'LC_ALL="en_US.UTF-8"' >> /etc/locale.conf
 ## TODO - Is this really a requirement? do we support any other of utf-8 compat locale? fr_FR.UTF-8, de-DE.UTF-8 ?
 
+###########################################################################################################
 ## Initialize Postgresql
+###########################################################################################################
 /usr/pgsql-9.6/bin/postgresql96-setup initdb
 
 
@@ -141,7 +163,9 @@ chmod 600 $PG_HOME_DIR/data/pg_hba.conf
 ## Restart Postgresql
 systemctl restart postgresql-9.6
 
+###########################################################################################################
 ## Create a DDL file for all our Db’s
+###########################################################################################################
 cat <<EOF > ~/create_ddl_c703.sql
 CREATE ROLE das LOGIN PASSWORD 'supersecret1';
 CREATE ROLE hive LOGIN PASSWORD 'supersecret1';
@@ -163,8 +187,9 @@ CREATE DATABASE hbase OWNER hbase ENCODING 'UTF-8';
 CREATE DATABASE phoenix OWNER phoenix ENCODING 'UTF-8';
 EOF
 
-
+###########################################################################################################
 ## Run the sql file to create the schema for all DB’s
+###########################################################################################################
 sudo -u postgres psql < ~/create_ddl_c703.sql
 
 ## Run the prepare script for SCM db
@@ -174,18 +199,23 @@ sudo -u postgres psql < ~/create_ddl_c703.sql
 sudo -u postgres psql -c 'ALTER DATABASE hive SET standard_conforming_strings=off;'
 sudo -u postgres psql -c 'ALTER DATABASE oozie SET standard_conforming_strings=off;'
 
+###########################################################################################################
 ## Install rng-tools,  we are expecting to see values over 1000, anything less than 100-200 and rngd isnt working
+###########################################################################################################
 yum -y install rng-tools
 cp /usr/lib/systemd/system/rngd.service /etc/systemd/system/
 systemctl daemon-reload
 systemctl start rngd
 
-
+i###########################################################################################################
 #time issues for clock offset in aws	
+###########################################################################################################
 echo "server 169.254.169.123 prefer iburst minpoll 4 maxpoll 4" >> /etc/chrony.conf
 systemctl restart chronyd
 
+###########################################################################################################
 echo "-- Enable passwordless root login via rsa key"
+###########################################################################################################
 ssh-keygen -f ~/myRSAkey -t rsa -N ""
 mkdir ~/.ssh
 cat ~/myRSAkey.pub >> ~/.ssh/authorized_keys
@@ -194,7 +224,9 @@ ssh-keyscan -H `hostname` >> ~/.ssh/known_hosts
 sed -i 's/.*PermitRootLogin.*/PermitRootLogin without-password/' /etc/ssh/sshd_config
 systemctl restart sshd
 
+###########################################################################################################
 echo "-- Start CM, it takes about 2 minutes to be ready"
+###########################################################################################################
 systemctl start cloudera-scm-server
 
 while [ `curl -s -X GET -u "admin:admin"  http://localhost:7180/api/version` -z ] ;
@@ -203,21 +235,40 @@ while [ `curl -s -X GET -u "admin:admin"  http://localhost:7180/api/version` -z 
     sleep 10;
 done
 
+###########################################################################################################
 echo "-- Now CM is started and the next step is to automate using the CM API"
+###########################################################################################################
 pip install --upgrade pip cm_client
 
+###########################################################################################################
 # update variables in the template
+###########################################################################################################
 sed -i "s/YourHostname/`hostname -f`/g" $TEMPLATE
+sed -i "s/YourHostname/`hostname -f`/g" scripts/create_cluster.py
 
+###########################################################################################################
+# create the cluster with API
+###########################################################################################################
+python scripts/create_cluster.py $TEMPLATE
+
+###########################################################################################################
+#
+###########################################################################################################
+
+###########################################################################################################
 ## Set up AutoTLS
+###########################################################################################################
 #JAVA_HOME="$JAVA_HOME" /opt/cloudera/cm-agent/bin/certmanager --location /opt/cloudera/CMCA setup --configure-services
 
-
+###########################################################################################################
 ## Install MIT Kerberos
+###########################################################################################################
 #yum -y install krb5-server krb5-workstation
 
 echo "If you wish, tail the log file and wait for  \": Started Jetty server\""
+echo
 echo "\"tail -f /var/log/cloudera-scm-server/cloudera-scm-server.log\""
+echo
 echo "login to CM  \"http://`curl ifconfig.me`:7180\" user:admin, pwd:admin"
 
-exit 0
+#exit 0
