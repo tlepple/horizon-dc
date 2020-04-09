@@ -19,6 +19,8 @@ CLDR_REPO_PASS="YourUserPass"
 
 ###########################################################################################################
 yum install -y wget
+yum install -y epel-release
+yum install -y python-pip
 
 DB_PASSWORD="supersecret1"
 
