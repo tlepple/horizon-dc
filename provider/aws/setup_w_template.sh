@@ -81,7 +81,7 @@ echo "-- Configure networking"
 PUBLIC_IP=`curl https://api.ipify.org/`
 hostnamectl set-hostname `hostname -f`
 echo "`hostname -I` `hostname`" >> /etc/hosts
-sed -i "s/HOSTNAME=.*/HOSTNAME=`hostname`/" /etc/sysconfig/network
+#sed -i "s/HOSTNAME=.*/HOSTNAME=`hostname`/" /etc/sysconfig/network
 systemctl disable firewalld
 systemctl stop firewalld
 setenforce 0
