@@ -14,7 +14,7 @@ set -e -x
 ###########################################################################################################
 # Set these password for access behind paywall
 ###########################################################################################################
-iCLDR_REPO_USER="YourUserID"
+CLDR_REPO_USER="YourUserID"
 CLDR_REPO_PASS="YourUserPass"
 
 ###########################################################################################################
@@ -23,6 +23,7 @@ yum install -y epel-release
 yum install -y python-pip
 
 DB_PASSWORD="supersecret1"
+TEMPLATE=$1
 
 #CLDR_MGR_BASEURL="https://archive.cloudera.com/p/cm7"
 CLDR_CM_LOCATION="@archive.cloudera.com/p/cm7"
