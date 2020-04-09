@@ -7,11 +7,15 @@ set -e -x
 ###########################################################################################################
 
 ###########################################################################################################
+# import parameters and utility functions 
+###########################################################################################################
+. utils.sh
+
+###########################################################################################################
 # Set these password for access behind paywall
 ###########################################################################################################
 CLDR_REPO_USER="YourUserID"
 CLDR_REPO_PASS="YourUserPass"
-
 
 ###########################################################################################################
 yum install -y wget
@@ -81,11 +85,16 @@ echo "-- Configure networking"
 ###########################################################################################################
 PUBLIC_IP=`curl https://api.ipify.org/`
 hostnamectl set-hostname `hostname -f`
+
 echo "`hostname -I` `hostname`" >> /etc/hosts
-#sed -i "s/HOSTNAME=.*/HOSTNAME=`hostname`/" /etc/sysconfig/network
-systemctl disable firewalld
-systemctl stop firewalld
+sed -i "s/HOSTNAME=.*/HOSTNAME=`hostname`/" /etc/sysconfig/network
+
+#systemctl disable firewalld
+#systemctl stop firewalld
+
+echo "set enforce step"
 setenforce 0
+echo "update selinux"
 sed -i 's/SELINUX=.*/SELINUX=disabled/' /etc/selinux/config
 
 ###########################################################################################################
@@ -210,19 +219,26 @@ systemctl start rngd
 i###########################################################################################################
 #time issues for clock offset in aws	
 ###########################################################################################################
+echo "setup clock offset issues for aws"
 echo "server 169.254.169.123 prefer iburst minpoll 4 maxpoll 4" >> /etc/chrony.conf
 systemctl restart chronyd
 
 ###########################################################################################################
 echo "-- Enable passwordless root login via rsa key"
 ###########################################################################################################
-ssh-keygen -f ~/myRSAkey -t rsa -N ""
-mkdir ~/.ssh
-cat ~/myRSAkey.pub >> ~/.ssh/authorized_keys
-chmod 400 ~/.ssh/authorized_keys
-ssh-keyscan -H `hostname` >> ~/.ssh/known_hosts
-sed -i 's/.*PermitRootLogin.*/PermitRootLogin without-password/' /etc/ssh/sshd_config
-systemctl restart sshd
+#ssh-keygen -f ~/myRSAkey -t rsa -N ""
+#mkdir ~/.ssh
+#cat ~/myRSAkey.pub >> ~/.ssh/authorized_keys
+#chmod 400 ~/.ssh/authorized_keys
+#ssh-keyscan -H `hostname` >> ~/.ssh/known_hosts
+#sed -i 's/.*PermitRootLogin.*/PermitRootLogin without-password/' /etc/ssh/sshd_config
+#systemctl restart sshd
+
+#####################################################
+#       Step 1: install passwordless access
+#####################################################
+echo "setup pwdless access"
+install_pwdless_access
 
 ###########################################################################################################
 echo "-- Start CM, it takes about 2 minutes to be ready"
