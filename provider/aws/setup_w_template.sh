@@ -17,6 +17,7 @@ set -e -x
 CLDR_REPO_USER="YourUserID"
 CLDR_REPO_PASS="YourUserPass"
 
+
 ###########################################################################################################
 yum install -y wget
 yum install -y epel-release
@@ -25,12 +26,28 @@ yum install -y python-pip
 DB_PASSWORD="supersecret1"
 TEMPLATE=$1
 
-#CLDR_MGR_BASEURL="https://archive.cloudera.com/p/cm7"
-CLDR_CM_LOCATION="@archive.cloudera.com/p/cm7"
-
-CLDR_MGR_BASEURL="https://$CLDR_REPO_USER:$CLDR_REPO_PASS$CLDR_CM_LOCATION"
-
+###########################################################################################################
+# No Paywall 
+###########################################################################################################
+CLDR_MGR_BASEURL="https://archive.cloudera.com/cm7"
 CLDR_MGR_VER_URL="$CLDR_MGR_BASEURL/7.0.3/redhat7/yum"
+
+wget $CLDR_MGR_VER_URL/cloudera-manager-trial.repo -P /etc/yum.repos.d/
+
+
+###########################################################################################################
+# Paywall
+###########################################################################################################
+#CLDR_CM_LOCATION="@archive.cloudera.com/p/cm7"
+#CLDR_MGR_BASEURL="https://$CLDR_REPO_USER:$CLDR_REPO_PASS$CLDR_CM_LOCATION"
+#CLDR_MGR_VER_URL="$CLDR_MGR_BASEURL/7.0.3/redhat7/yum"
+
+#wget $CLDR_MGR_VER_URL/cloudera-manager.repo -P /etc/yum.repos.d/
+
+###########################################################################################################
+# End Paywall Section
+###########################################################################################################
+
 
 ##CLDR includes an rpm for openjdk8 in the repo
 OPENJDK_RPM_URL="$CLDR_MGR_VER_URL/RPMS/x86_64/openjdk8-8.0+232_9-cloudera.x86_64.rpm"
@@ -70,8 +87,6 @@ sysctl vm.swappiness=10
 
 echo "vm.swappiness = 10" >> /etc/sysctl.conf
 
-#wget $CLDR_MGR_VER_URL/cloudera-manager-trial.repo -P /etc/yum.repos.d/
-wget $CLDR_MGR_VER_URL/cloudera-manager.repo -P /etc/yum.repos.d/
 
 ###########################################################################################################
 # Update the UserName and PWD in the repo here:
