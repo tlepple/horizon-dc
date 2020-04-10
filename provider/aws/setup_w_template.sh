@@ -14,8 +14,8 @@ set -e -x
 ###########################################################################################################
 # Set these password for access behind paywall
 ###########################################################################################################
-CLDR_REPO_USER="YourUserID"
-CLDR_REPO_PASS="YourUserPass"
+#CLDR_REPO_USER="YourUserID"
+#CLDR_REPO_PASS="YourUserPass"
 
 
 ###########################################################################################################
@@ -89,10 +89,10 @@ echo "vm.swappiness = 10" >> /etc/sysctl.conf
 
 
 ###########################################################################################################
-# Update the UserName and PWD in the repo here:
+# Update the UserName and PWD in the repo here for paywall
 ###########################################################################################################
-sed -i "s/username=changeme/username=$CLDR_REPO_USER/g" /etc/yum.repos.d/cloudera-manager.repo
-sed -i "s/password=changeme/password=$CLDR_REPO_PASS/g" /etc/yum.repos.d/cloudera-manager.repo
+#sed -i "s/username=changeme/username=$CLDR_REPO_USER/g" /etc/yum.repos.d/cloudera-manager.repo
+#sed -i "s/password=changeme/password=$CLDR_REPO_PASS/g" /etc/yum.repos.d/cloudera-manager.repo
 
 
 ## Import the GPG Key
