@@ -24,7 +24,7 @@ install_jq_cli() {
 	#####################################################
 	# first check if JQ is installed
 	#####################################################
-	log "Installing jq"
+	echo "Installing jq"
 
 	jq_v=`jq --version 2>&1`
 	if [[ $jq_v = *"command not found"* ]]; then
@@ -32,12 +32,12 @@ install_jq_cli() {
 	  chmod +x ./jq
 	  cp jq /usr/bin
 	else
-	  log "jq already installed. Skipping"
+	  echo "jq already installed. Skipping"
 	fi
 
 	jq_v=`jq --version 2>&1`
 	if [[ $jq_v = *"command not found"* ]]; then
-	  log "error installing jq. Please see README and install manually"
+	  #log "error installing jq. Please see README and install manually"
 	  echo "Error installing jq. Please see README and install manually"
 	  exit 1 
 	fi  
