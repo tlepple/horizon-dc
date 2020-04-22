@@ -13,7 +13,6 @@ export atlas_host=${atlas_host:-$(hostname -f)}      ##atlas hostname (if not on
 export ranger_password=${ranger_password:-supersecret1}
 export atlas_pass=${atlas_pass:-supersecret1}
 export kdc_realm=${kdc_realm:-CLOUDERA.COM}
-#export cluster_name=${cluster_name:-WWBank}
 export host=$(hostname -f)
 
 
@@ -141,12 +140,21 @@ hdfs  dfs -chown -R hive:hadoop  /apps
 ###########################################################################################################
 # 
 ###########################################################################################################
+echo "Importing data..."
 
 cd /root/horizon-dc/provider/aws/component/wwbank-demo
 
 ./scripts/02-create-hdfs-user-folders.sh
 ./scripts/03-copy-data-to-hdfs-dc.sh
 hdfs dfs -ls -R /hive_data
+
+echo "Create hive tables..."
+beeline  -n etl_user -f ./data/HiveSchema-dc.hsql
+beeline  -n etl_user -f ./data/TransSchema-dc.hsql
+
+echo "enable PAM auth for zeppelin, Hue..."
+setfacl -m user:zeppelin:r /etc/shadow
+setfacl -m user:hue:r /etc/shadow
 
 ###########################################################################################################
 #
