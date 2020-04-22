@@ -157,8 +157,50 @@ setfacl -m user:zeppelin:r /etc/shadow
 setfacl -m user:hue:r /etc/shadow
 
 ###########################################################################################################
-#
+# Zeppelin Stuff
 ###########################################################################################################
+sleep 5
+
+cd ./interpreters/
+
+
+
+#login to zeppelin and grab cookie 
+cookie=$( curl -i --data "userName=etl_user&password=supersecret1" -X POST http://$(hostname -f):8885/api/login | grep HttpOnly  | tail -1  )
+echo "$cookie" > cookie.txt
+
+#Create shell interpreter setting
+curl -b ./cookie.txt -X POST http://$(hostname -f):8885/api/interpreter/setting -d @./shell.json
+
+#Create jdbc interpreter setting
+hivejar=$(ls /opt/cloudera/parcels/CDH/jars/hive-jdbc-3*-standalone.jar)
+sed -i.bak "s|__hivejar__|${hivejar}|g" ./jdbc.json
+curl -b ./cookie.txt -X POST http://$(hostname -f):8885/api/interpreter/setting -d @./jdbc.json
+
+#list all interpreters settings - jdbc and sh should now be added
+curl -b ./cookie.txt http://$(hostname -f):8885/api/interpreter/setting | python -m json.tool | grep "id"
+
+
+#import zeppelin notebooks
+cd /var/lib/zeppelin/notebook
+mkdir 2EKX5F5MF
+cp "/root/horizon-dc/provider/aws/component/wwbank-demo/zeppelin/notebooks/Demos _ Security _ WorldWideBank _ Joe-Analyst.json"  ./2EKX5F5MF/note.json
+
+mkdir 2EMPR5K29
+cp "/root/horizon-dc/provider/aws/component/wwbank-demo/zeppelin/notebooks/Demos _ Security _ WorldWideBank _ Ivanna EU HR.json" ./2EMPR5K29/note.json
+
+mkdir 2EKHXD4H3
+cp "/root/horizon-dc/provider/aws/component/wwbank-demo/zeppelin/notebooks/Demos _ Security _ WorldWideBank _ etl_user.json" ./2EKHXD4H3/note.json
+
+mkdir 2EZM9PAXV
+cp "/root/horizon-dc/provider/aws/component/wwbank-demo/zeppelin/notebooks/Demos _ Hive ACID.json" ./2EZM9PAXV/note.json
+
+mkdir 2EXWA1114
+cp "/root/horizon-dc/provider/aws/component/wwbank-demo/zeppelin/notebooks/Demos _ Hive Merge.json" ./2EXWA1114/note.json
+
+
+chown -R  zeppelin:zeppelin /var/lib/zeppelin/notebook 
+
 ###########################################################################################################
 #
 ###########################################################################################################
