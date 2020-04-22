@@ -204,6 +204,15 @@ chown -R  zeppelin:zeppelin /var/lib/zeppelin/notebook
 ###########################################################################################################
 #
 ###########################################################################################################
+
+cd /root/horizon-dc/provider/aws/component/wwbank-demo/scripts
+
+sed -i.bak "s/21000/31000/g" env_atlas.sh
+sed -i.bak "s/localhost/${atlas_host}/g" env_atlas.sh
+sed -i.bak "s/ATLAS_PASS=admin/ATLAS_PASS=${atlas_pass}/g" env_atlas.sh
+
+./04-atlas-import-classification.sh
+
 ###########################################################################################################
 #
 ###########################################################################################################
