@@ -9,6 +9,7 @@
 ###########################################################################################################
 # Set some variables:
 ###########################################################################################################
+export enable_kerberos=${enable_kerberos:-true}      ## whether kerberos is enabled on cluster
 export atlas_host=${atlas_host:-$(hostname -f)}      ##atlas hostname (if not on current host). Override with your own
 export ranger_password=${ranger_password:-supersecret1}
 export atlas_pass=${atlas_pass:-supersecret1}
@@ -213,9 +214,21 @@ sed -i.bak "s/ATLAS_PASS=admin/ATLAS_PASS=${atlas_pass}/g" env_atlas.sh
 
 ./04-atlas-import-classification.sh
 
+./05-create-hbase-kafka-dc.sh
+
+echo "Sleeping for 60s..."
+sleep 60
+
+./06-associate-entities-with-tags-dc.sh
+
 ###########################################################################################################
 #
 ###########################################################################################################
+
+export cluster_name=$(curl -X GET -u admin:admin http://localhost:7180/api/v40/clusters/  | jq '.items[0].name' | tr -d '"')
+
+echo "Setup complete! Restart Zeppelin/NiFi to see imported notebooks/templates"
+exit 0
 ###########################################################################################################
 #
 ###########################################################################################################
