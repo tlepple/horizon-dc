@@ -160,6 +160,7 @@ setfacl -m user:hue:r /etc/shadow
 ###########################################################################################################
 # Zeppelin Stuff
 ###########################################################################################################
+echo "setup of zeppelin items..."
 sleep 5
 
 cd ./interpreters/
@@ -205,7 +206,7 @@ chown -R  zeppelin:zeppelin /var/lib/zeppelin/notebook
 ###########################################################################################################
 #
 ###########################################################################################################
-
+echo "atlas classification items..."
 cd /root/horizon-dc/provider/aws/component/wwbank-demo/scripts
 
 sed -i.bak "s/21000/31000/g" env_atlas.sh
@@ -214,11 +215,13 @@ sed -i.bak "s/ATLAS_PASS=admin/ATLAS_PASS=${atlas_pass}/g" env_atlas.sh
 
 ./04-atlas-import-classification.sh
 
+echo "hbase and kafka items..."
 ./05-create-hbase-kafka-dc.sh
 
 echo "Sleeping for 60s..."
 sleep 60
 
+echo "associate entities with tags..."
 ./06-associate-entities-with-tags-dc.sh
 
 ###########################################################################################################
