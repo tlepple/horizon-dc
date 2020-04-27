@@ -37,7 +37,7 @@ sleep 60
 ###########################################################################################################
 #  Import Ranger items
 ###########################################################################################################
-iranger_curl="curl -u admin:${ranger_password}"
+ranger_curl="curl -u admin:${ranger_password}"
 ranger_url="http://localhost:6080/service"
 
 
