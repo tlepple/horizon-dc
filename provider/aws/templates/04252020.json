@@ -175,6 +175,10 @@
         {
           "refName": "yarn-RESOURCEMANAGER-BASE",
           "roleType": "RESOURCEMANAGER",
+          "configs" : [ {
+          "name" : "yarn_scheduler_maximum_allocation_mb",
+          "value" : "4608"
+          } ],
           "base": true
         },
         {
@@ -183,7 +187,7 @@
           "configs": [
             {
               "name": "yarn_nodemanager_resource_memory_mb",
-              "value": "4096"
+              "value": "8192"
             }
           ],
           "base": true
@@ -194,7 +198,7 @@
           "base": true
         }
       ]
-    },
+    }, 
     {
       "refName": "hbase",
       "serviceType": "HBASE",
