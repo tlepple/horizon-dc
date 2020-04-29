@@ -357,6 +357,10 @@
           "roleType": "ATLAS_SERVER",
           "configs": [
             {
+	      "name" : "atlas_authentication_method_file",
+              "value" : "true"
+	    },
+	    {
               "name": "atlas_admin_password",
               "variable": "atlas-ATLAS_SERVER-BASE-atlas_admin_password"
             }

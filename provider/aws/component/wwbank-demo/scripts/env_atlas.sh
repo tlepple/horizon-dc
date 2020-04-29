@@ -1,6 +1,6 @@
 #!/bin/bash
 
-export ATLAS_URL=http://localhost:21000
+export ATLAS_URL=http://localhost:31000
 export ATLAS_USER=admin
 export ATLAS_PASS=admin
 
