@@ -265,6 +265,7 @@ new_all_services_status_eq () {
        # add elements to this array
        SERVICES_ARRAY+=(${value})
     done
+#    echo "services array --> " ${SERVICES_ARRAY[@]} 
 
     TEMP_ARRAY=()
     for pkg in "${SERVICES_ARRAY[@]}"; do
@@ -283,12 +284,14 @@ new_all_services_status_eq () {
     SERVICES_ARRAY=("${TEMP_ARRAY[@]}")
     unset TEMP_ARRAY
 
+#    echo "edited services array --> " ${SERVICES_ARRAY[@]}
    #  ready to check the values 
-    for x in ${SERVICES_ARRAY}; do
+    for x in ${SERVICES_ARRAY[@]}; do
         get_service_state ${x}
-        echo "       "  ${x} " service state is --> " ${CURRENT_SERVICE_STATE}  
+#        echo "       "  ${x} " service state is --> " ${CURRENT_SERVICE_STATE}  
 
-        STATUS_ARRAY+==(${CURRENT_SERVICE_STATE})
+        STATUS_ARRAY+=(${CURRENT_SERVICE_STATE})
+#echo "STATUS_ARRAY --> " ${STATUS_ARRAY[@]}
     done
     
     echo "STATUS_ARRAY values --> " "${STATUS_ARRAY[@]}"
