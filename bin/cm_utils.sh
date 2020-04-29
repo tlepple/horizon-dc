@@ -246,3 +246,53 @@ all_services_status_eq () {
 
     echo "Is Array Equal ? --> " ${ARRAY_EQ}
 }
+
+#########################################################
+# New All Service Status Equal
+#########################################################
+
+new_all_services_status_eq () {
+    get_installed_services
+
+    #  declare some arrays
+    STATUS_ARRAY=()
+    SERVICES_ARRAY=()
+    #  declare and array of elements to be removed
+    TO_REMOVE=(tez)
+
+    for value in ${INSTALLED_SERVICES}; do
+
+       # add elements to this array
+       SERVICES_ARRAY+=(${value})
+    done
+
+    TEMP_ARRAY=()
+    for pkg in "${SERVICES_ARRAY[@]}"; do
+        for remove in "${TO_REMOVE[@]}"; do
+            KEEP=true
+            if [[ ${pkg} == ${remove} ]]; then
+                KEEP=false
+                break
+           fi
+        done
+        if ${KEEP}; then
+            TEMP_ARRAY+=(${pkg})
+        fi 
+    done 
+
+    SERVICES_ARRAY=("${TEMP_ARRAY[@]}")
+    unset TEMP_ARRAY
+
+   #  ready to check the values 
+    for x in ${SERVICES_ARRAY}; do
+        get_service_state ${x}
+        echo "       "  ${x} " service state is --> " ${CURRENT_SERVICE_STATE}  
+
+        STATUS_ARRAY+==(${CURRENT_SERVICE_STATE})
+    done
+    
+    echo "STATUS_ARRAY values --> " "${STATUS_ARRAY[@]}"
+    isarray.equal "${STATUS_ARRAY[@]}"
+
+   echo "Is Array Equal ? --> " ${ARRAY_EQ}
+}

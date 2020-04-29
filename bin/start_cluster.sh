@@ -18,7 +18,8 @@ start_cm_service
 start_cluster_services
 
 #check all services are started
-all_services_status_eq
+#all_services_status_eq
+new_all_services_status_eq
 echo
 echo "sleeping for 20s"
 sleep 20s
