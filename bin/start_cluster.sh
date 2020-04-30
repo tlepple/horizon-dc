@@ -40,5 +40,5 @@ echo
 #check_cdsw
 
 #echo services connections
-#. ${starting_dir}/bin/echo_service_conns.sh
+. ${starting_dir}/bin/echo_service_conns.sh
 
