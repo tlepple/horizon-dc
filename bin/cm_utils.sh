@@ -299,3 +299,49 @@ new_all_services_status_eq () {
 
    echo "Is Array Equal ? --> " ${ARRAY_EQ}
 }
+
+#########################################################
+# Start a specific cluster service
+#########################################################
+start_service() {
+    get_cluster_name
+    get_service_state $1
+    
+    if [ ${CURRENT_SERVICE_STATE} == 'STOPPED' ]; then
+        echo "Starting $1 Service..."
+        curl -X POST -u "admin:admin" "http://${CM_HOST}:7180/api/v40/clusters/${CLUSTER_NAME}/services/$1/commands/start"
+    fi
+
+    return
+}
+
+#########################################################
+# Stop a specific cluster service
+#########################################################
+stop_service() {
+    get_cluster_name
+    get_service_state $1
+    
+    if [ ${CURRENT_SERVICE_STATE} == 'STARTED' ]; then
+        echo "Stopping $1 Service..."
+        curl -X POST -u "admin:admin" "http://${CM_HOST}:7180/api/v40/clusters/${CLUSTER_NAME}/services/$1/commands/stop"
+    fi
+
+    return
+}
+
+
+#########################################################
+# Restart a specific cluster service
+#########################################################
+restart_service() {
+    get_cluster_name
+    get_service_state $1
+   
+    if [ ${CURRENT_SERVICE_STATE} == 'STARTED' ]; then
+        echo "Restarting $1 Service..."
+        curl -X POST -u "admin:admin" "http://${CM_HOST}:7180/api/v40/clusters/${CLUSTER_NAME}/services/$1/commands/restart"
+    fi
+
+    return
+}
