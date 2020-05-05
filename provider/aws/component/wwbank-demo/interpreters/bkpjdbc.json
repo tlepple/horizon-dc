@@ -13,7 +13,7 @@
          "name":"default.driver"
       },
       "zeppelin.jdbc.principal":{
-         "value":"__krbprincipal__",
+         "value":"",
          "type":"string",
          "name":"zeppelin.jdbc.principal"
       },
@@ -58,7 +58,7 @@
          "name":"default.precode"
       },
       "zeppelin.jdbc.auth.type":{
-         "value":"KERBEROS",
+         "value":"",
          "type":"string",
          "name":"zeppelin.jdbc.auth.type"
       },
@@ -72,7 +72,7 @@
          "name":"zeppelin.jdbc.concurrent.use"
       },
       "zeppelin.jdbc.keytab.location":{
-         "value":"__keytablocation__",
+         "value":"",
          "type":"string",
          "name":"zeppelin.jdbc.keytab.location"
       },
