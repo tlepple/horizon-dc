@@ -2,9 +2,10 @@
 
 
 ###########################################################################################################
-#  Load Utilities 
+#  Load some utility functions
 ###########################################################################################################
 . ../../utils.sh
+. ~/horizon-dc/bin/cm_utils.sh
 
 ###########################################################################################################
 # Set some variables:
@@ -15,6 +16,7 @@ export ranger_password=${ranger_password:-supersecret1}
 export atlas_pass=${atlas_pass:-supersecret1}
 export kdc_realm=${kdc_realm:-CLOUDERA.COM}
 export host=$(hostname -f)
+export CM_HOST=${CM_HOST:-$(hostname -f)}
 
 
 
@@ -229,12 +231,46 @@ echo "associate entities with tags..."
 ./06-associate-entities-with-tags-dc.sh
 
 ###########################################################################################################
-#
+# 
 ###########################################################################################################
 
 export cluster_name=$(curl -X GET -u admin:admin http://localhost:7180/api/v40/clusters/  | jq '.items[0].name' | tr -d '"')
 
-echo "Setup complete! Restart Zeppelin/NiFi to see imported notebooks/templates"
+echo "restarting Zeppelin to see imported notebooks..."
+
+# restart Zeppelin (call to functions)
+restart_service zeppelin
+
+sleep 15s
+
+ # check for 5 min if status is started
+ echo "Check to see if service is started (for 5 min max)"
+    counter=0
+
+    while [ $counter -lt 300 ]; do
+        get_service_state zeppelin
+        if [ ${CURRENT_SERVICE_STATE} != 'STARTED' ]; then
+            echo "Current Status is --> " ${CURRENT_SERVICE_STATE}
+            echo "sleeping for 20s"
+            echo;
+            sleep 20s
+            let counter=counter+20
+        else
+            echo "Zeppelin is started!"
+           return
+        fi
+    done
+
+echo
+echo "Setup Complete"
+
+#  call echo connections...
+
+echo
+echo
+
+. ~/horizon-dc/bin/echo_service_conns.sh
+
 exit 0
 ###########################################################################################################
 #
