@@ -35,6 +35,7 @@ install_jq_cli
 
 echo "Waiting 60s for Ranger usersync..."
 sleep 60
+echo
 
 ###########################################################################################################
 #  Import Ranger items
@@ -89,6 +90,7 @@ sleep 10
 
 #Import Ranger policies
 echo "Importing Ranger policies..."
+echo
 cd ./policies
 
 resource_policies=$(ls Ranger_Policies_ALL_*.json)
@@ -104,6 +106,7 @@ cd ..
 
 echo "Sleeping for 45s..."
 sleep 45
+echo
 
 ###########################################################################################################
 # Create KDC users and keytabs
@@ -119,7 +122,7 @@ kadmin.local -q "addprinc -randkey john_finance/$(hostname -f)@${kdc_realm}"
 kadmin.local -q "addprinc -randkey ivanna_eu_hr/$(hostname -f)@${kdc_realm}"
 kadmin.local -q "addprinc -randkey etl_user/$(hostname -f)@${kdc_realm}"
 
-
+echo
 echo "Creating user keytabs..."
 mkdir -p /etc/security/keytabs
 cd /etc/security/keytabs
@@ -144,6 +147,7 @@ hdfs  dfs -chown -R hive:hadoop  /apps
 # 
 ###########################################################################################################
 echo "Importing data..."
+echo
 
 cd /root/horizon-dc/provider/aws/component/wwbank-demo
 
@@ -162,6 +166,7 @@ setfacl -m user:hue:r /etc/shadow
 ###########################################################################################################
 # Zeppelin Stuff
 ###########################################################################################################
+echo
 echo "setup of zeppelin items..."
 sleep 5
 
@@ -213,6 +218,7 @@ chown -R  zeppelin:zeppelin /var/lib/zeppelin/notebook
 #
 ###########################################################################################################
 echo "atlas classification items..."
+echo
 cd /root/horizon-dc/provider/aws/component/wwbank-demo/scripts
 
 sed -i.bak "s/21000/31000/g" env_atlas.sh
@@ -237,6 +243,7 @@ echo "associate entities with tags..."
 export cluster_name=$(curl -X GET -u admin:admin http://localhost:7180/api/v40/clusters/  | jq '.items[0].name' | tr -d '"')
 
 echo "restarting Zeppelin to see imported notebooks..."
+echo
 
 # restart Zeppelin (call to functions)
 restart_service zeppelin
@@ -257,7 +264,6 @@ sleep 15s
             let counter=counter+20
         else
             echo "Zeppelin is started!"
-           return
         fi
     done
 
