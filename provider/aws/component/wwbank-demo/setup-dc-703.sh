@@ -177,6 +177,10 @@ curl -b ./cookie.txt -X POST http://$(hostname -f):8885/api/interpreter/setting 
 #Create jdbc interpreter setting
 hivejar=$(ls /opt/cloudera/parcels/CDH/jars/hive-jdbc-3*-standalone.jar)
 sed -i.bak "s|__hivejar__|${hivejar}|g" ./jdbc.json
+KEYTABLOCATION=$(find /var/run/cloudera-scm-agent/process/ -type f ! -empty -printf "%T@ %Tc %p\n" | sort -z | grep zeppelin.keytab | head -n1 |awk '{ print $9 }')
+sed -i.bak "s|__keytablocation__|${KEYTABLOCATION}|g" ./jdbc.json
+KRBPRINCIPAL=zeppelin/$(hostname -f)@CLOUDERA.COM
+sed -i.bak "s|__krbprincipal__|${KRBPRINCIPAL}|g" ./jdbc.json
 curl -b ./cookie.txt -X POST http://$(hostname -f):8885/api/interpreter/setting -d @./jdbc.json
 
 #list all interpreters settings - jdbc and sh should now be added
