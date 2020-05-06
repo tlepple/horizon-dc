@@ -264,6 +264,7 @@ sleep 15s
             let counter=counter+20
         else
             echo "Zeppelin is started!"
+            break
         fi
     done
 
