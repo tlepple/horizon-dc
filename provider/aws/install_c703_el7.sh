@@ -170,6 +170,22 @@ systemctl start cloudera-scm-server
 ## Install MIT Kerberos
 #yum -y install krb5-server krb5-workstation
 
+###########################################################################################################
+# import parameters and utility functions 
+###########################################################################################################
+. utils.sh
+
+#####################################################
+#       Step 1: install passwordless access
+#####################################################
+install_pwdless_access
+
+
+#####################################################
+#       Step 2: install jq
+#####################################################
+install_jq_cli
+
 echo "If you wish, tail the log file and wait for  \": Started Jetty server\""
 echo "\"tail -f /var/log/cloudera-scm-server/cloudera-scm-server.log\""
 echo "login to CM  \"http://`curl ifconfig.me`:7180\" user:admin, pwd:admin"
