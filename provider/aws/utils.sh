@@ -85,7 +85,7 @@ install_aws_cli() {
 
 	jq_v=`jq --version 2>&1`
 	if [[ $jq_v = *"command not found"* ]]; then
-	  log "error installing jq. Please see README and install manually"
+	  echo "error installing jq. Please see README and install manually"
 	  echo "Error installing jq. Please see README and install manually"
 	  exit 1 
 	fi  
@@ -107,6 +107,6 @@ install_aws_cli() {
   		unzip awscli-bundle.zip
   		./awscli-bundle/install -i /usr/local/aws -b /usr/local/bin/aws 
   		rm -rf awscli-bundle*
-  	log "Done installing AWS CLI"
+  	echo "Done installing AWS CLI"
 
 }
