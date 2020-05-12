@@ -25,6 +25,7 @@ install_jq_cli() {
 	# first check if JQ is installed
 	#####################################################
 	echo "Installing jq"
+	yum install -y unzip
 
 	jq_v=`jq --version 2>&1`
 	if [[ $jq_v = *"command not found"* ]]; then
@@ -54,6 +55,7 @@ install_aws_cli() {
 	# BEGIN
 	#########################################################
 	echo "BEGIN setup.sh"
+	yum install -y unzip
 
 
 	#####################################################
@@ -72,7 +74,6 @@ install_aws_cli() {
 
         jq_v=`jq --version 2>&1`
         if [[ $jq_v = *"command not found"* ]]; then
-          #log "error installing jq. Please see README and install manually"
           echo "Error installing jq. Please see README and install manually"
           exit 1
         fi
@@ -87,9 +88,6 @@ install_aws_cli() {
     		echo "AWS CLI already installed. Skipping"
     		return
   	fi
-  	if [ $machine = 'Linux' ]; then
-    		yum -y install unzip
-  	fi  
   		curl -s -O "https://s3.amazonaws.com/aws-cli/awscli-bundle.zip"
   		unzip awscli-bundle.zip
   		./awscli-bundle/install -i /usr/local/aws -b /usr/local/bin/aws 
