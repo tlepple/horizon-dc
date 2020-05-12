@@ -12,6 +12,12 @@ set -e -x
 . utils.sh
 
 ###########################################################################################################
+# install aws cli
+###########################################################################################################
+install_aws_cli
+
+
+###########################################################################################################
 # Set these password for access behind paywall
 ###########################################################################################################
 #CLDR_REPO_USER="YourUserID"
@@ -181,6 +187,8 @@ cat <<EOF > $PG_HOME_DIR/data/pg_hba.conf
   host    rman            rman           0.0.0.0/0                md5
   host    hbase           hbase          0.0.0.0/0                md5
   host    phoenix         phoenix        0.0.0.0/0                md5  
+  host    registry        registry       0.0.0.0/0                md5
+  host    streamsmsgmgr   streamsmsgmgr  0.0.0.0/0                md5
 EOF
 
 chown postgres:postgres $PG_HOME_DIR/data/pg_hba.conf
@@ -203,6 +211,8 @@ CREATE ROLE rman LOGIN PASSWORD 'supersecret1';
 CREATE ROLE scm LOGIN PASSWORD 'supersecret1';
 CREATE ROLE hbase LOGIN PASSWORD 'supersecret1';
 CREATE ROLE phoenix LOGIN PASSWORD 'supersecret1';
+CREATE ROLE registry LOGIN PASSWORD 'supersecret1';
+CREATE ROLE streamsmsgmgr LOGIN PASSWORD 'supersecret1';
 CREATE DATABASE das OWNER das ENCODING 'UTF-8';
 CREATE DATABASE hive OWNER hive ENCODING 'UTF-8';
 CREATE DATABASE hue OWNER hue ENCODING 'UTF-8';
@@ -212,6 +222,8 @@ CREATE DATABASE rman OWNER rman ENCODING 'UTF-8';
 CREATE DATABASE scm OWNER scm ENCODING 'UTF-8';
 CREATE DATABASE hbase OWNER hbase ENCODING 'UTF-8';
 CREATE DATABASE phoenix OWNER phoenix ENCODING 'UTF-8';
+CREATE DATABASE registry OWNER phoenix ENCODING 'UTF-8';
+CREATE DATABASE streamsmsgmgr OWNER phoenix ENCODING 'UTF-8';
 EOF
 
 ###########################################################################################################
@@ -233,6 +245,16 @@ yum -y install rng-tools
 cp /usr/lib/systemd/system/rngd.service /etc/systemd/system/
 systemctl daemon-reload
 systemctl start rngd
+
+###########################################################################################################
+#  nodejs items for SMM
+###########################################################################################################
+yum install -y gcc-c++ make 
+curl -sL https://rpm.nodesource.com/setup_10.x | sudo -E bash - 
+sudo yum install nodejs -y
+node -v    #nodejs version greater than 10  
+npm -v 
+npm install forever -g 
 
 ###########################################################################################################
 #time issues for clock offset in aws	
@@ -257,6 +279,51 @@ systemctl restart sshd
 #####################################################
 #echo "setup pwdless access"
 #install_pwdless_access
+
+###########################################################################################################
+# download CSDs & parcels
+###########################################################################################################
+#CSDs
+cd /opt/cloudera/csd
+
+aws s3 cp s3://zbuild-stuff/csd/NIFI-1.11.4.1.1.0.0-119.jar .
+aws s3 cp s3://zbuild-stuff/csd/NIFICA-1.11.4.1.1.0.0-119.jar .
+aws s3 cp s3://zbuild-stuff/csd/NIFIREGISTRY-0.6.0.1.1.0.0-119.jar .
+aws s3 cp s3://zbuild-stuff/csd/SCHEMAREGISTRY-0.8.0.jar .
+aws s3 cp s3://zbuild-stuff/csd/STREAMS_MESSAGING_MANAGER-2.1.0.jar .
+aws s3 cp s3://zbuild-stuff/csd/CLOUDERA_DATA_SCIENCE_WORKBENCH-CDPDC-1.7.2.jar .
+aws s3 cp s3://zbuild-stuff/csd/FLINK-1.9.1-csa1.1.0.0-cdh7.0.3.0-79-1753674.jar .
+
+
+# set ownership
+chown cloudera-scm:cloudera-scm /opt/cloudera/csd/*
+chmod 644 /opt/cloudera/csd/*
+
+#parcels
+cd /opt/cloudera/parcel-repo
+
+
+aws s3 cp s3://zbuild-stuff/parcel/CDSW-1.7.2.p1.2066404-el7.parcel .
+aws s3 cp s3://zbuild-stuff/parcel/CFM-1.1.0.0-el7.parcel .
+aws s3 cp s3://zbuild-stuff/parcel/FLINK-1.9.1-csa1.1.0.0-cdh7.0.3.0-79-1753674-el7.parcel .
+aws s3 cp s3://zbuild-stuff/parcel/KAFKA-4.1.0-1.4.1.0.p0.4-el7.parcel .
+aws s3 cp s3://zbuild-stuff/parcel/SCHEMAREGISTRY-0.8.0.2.0.1.0-29-el7.parcel .
+aws s3 cp s3://zbuild-stuff/parcel/STREAMS_MESSAGING_MANAGER-2.1.0.2.0.1.0-29-el7.parcel .
+
+
+#SHAs
+aws s3 cp s3://zbuild-stuff/sha/CDSW-1.7.2.p1.2066404-el7.parcel.sha .
+aws s3 cp s3://zbuild-stuff/sha/CFM-1.1.0.0-el7.parcel.sha .
+aws s3 cp s3://zbuild-stuff/sha/FLINK-1.9.1-csa1.1.0.0-cdh7.0.3.0-79-1753674-el7.parcel.sha .
+aws s3 cp s3://zbuild-stuff/sha/KAFKA-4.1.0-1.4.1.0.p0.4-el7.parcel.sha .
+aws s3 cp s3://zbuild-stuff/sha/SCHEMAREGISTRY-0.8.0.2.0.1.0-29-el7.parcel.sha .
+aws s3 cp s3://zbuild-stuff/sha/STREAMS_MESSAGING_MANAGER-2.1.0.2.0.1.0-29-el7.parcel.sha .
+
+#set ownership parcels and SHAs:
+
+chown cloudera-scm:cloudera-scm /opt/cloudera/parcel-repo/*
+
+
 
 ###########################################################################################################
 echo "-- Start CM, it takes about 2 minutes to be ready"
