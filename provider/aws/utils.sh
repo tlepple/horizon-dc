@@ -55,40 +55,27 @@ install_aws_cli() {
 	#########################################################
 	echo "BEGIN setup.sh"
 
-	unameOut="$(uname -s)"
-	case "${unameOut}" in
-	  Linux*)     machine=Linux;;
-	  Darwin*)    machine=Mac;;
-	  CYGWIN*)    machine=Cygwin;;
-	  MINGW*)     machine=MinGw;;
-	  *)          machine="UNKNOWN:${unameOut}"
-	esac
-	echo "Current machine is: $machine"
 
 	#####################################################
 	# first check if JQ is installed
 	#####################################################
 	echo "Installing jq"
 
-	jq_v=`jq --version 2>&1`
-	if [[ $jq_v = *"command not found"* ]]; then
-	  if [[$machine = "Mac" ]]; then
-	    curl -L -s -o jq "https://github.com/stedolan/jq/releases/download/jq-1.6/jq-osx-amd64"
-	  else
-	    curl -L -s -o jq "https://github.com/stedolan/jq/releases/download/jq-1.6/jq-linux64"
-	  fi 
-	  chmod +x ./jq
-	  cp jq /usr/bin
-	else
-	  echo "jq already installed. Skipping"
-	fi
+        jq_v=`jq --version 2>&1`
+        if [[ $jq_v = *"command not found"* ]]; then
+          curl -L -s -o jq "https://github.com/stedolan/jq/releases/download/jq-1.6/jq-linux64"
+          chmod +x ./jq
+          cp jq /usr/bin
+        else
+          echo "jq already installed. Skipping"
+        fi
 
-	jq_v=`jq --version 2>&1`
-	if [[ $jq_v = *"command not found"* ]]; then
-	  echo "error installing jq. Please see README and install manually"
-	  echo "Error installing jq. Please see README and install manually"
-	  exit 1 
-	fi  
+        jq_v=`jq --version 2>&1`
+        if [[ $jq_v = *"command not found"* ]]; then
+          #log "error installing jq. Please see README and install manually"
+          echo "Error installing jq. Please see README and install manually"
+          exit 1
+        fi
 
 	####################################################
  	# then install AWS CLI
