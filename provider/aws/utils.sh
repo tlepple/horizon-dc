@@ -82,12 +82,12 @@ install_aws_cli() {
  	# then install AWS CLI
 	#####################################################
   	echo "Installing AWS_CLI"
-  	aws_cli_version=`aws --version 2>&1`
-  	echo "Current CLI version: $aws_cli_version"
-  	if [[ $aws_cli_version = *"aws-cli"* ]]; then
-    		echo "AWS CLI already installed. Skipping"
-    		return
-  	fi
+#  	aws_cli_version=`aws --version 2>&1`
+#  	echo "Current CLI version: $aws_cli_version"
+#  	if [[ $aws_cli_version = *"aws-cli"* ]]; then
+#    		echo "AWS CLI already installed. Skipping"
+#    		return
+#  	fi
   		curl -s -O "https://s3.amazonaws.com/aws-cli/awscli-bundle.zip"
   		unzip awscli-bundle.zip
   		./awscli-bundle/install -i /usr/local/aws -b /usr/local/bin/aws 
