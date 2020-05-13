@@ -122,6 +122,20 @@ setenforce 0
 echo "update selinux"
 sed -i 's/SELINUX=.*/SELINUX=disabled/' /etc/selinux/config
 
+
+###########################################################################################################
+# CDSW prereqs
+###########################################################################################################
+
+echo "-- Set ulimits for CDSW"
+ulimit -n 1048576
+echo "fs.file-max=1048576" >> /etc/sysctl.conf
+echo "*               hard    nofile          1048576" >> /etc/security/limits.conf
+echo "*               soft    nofile          1048576" >> /etc/security/limits.conf
+echo "root               hard    nofile          1048576" >> /etc/security/limits.conf
+echo "root               soft    nofile          1048576" >> /etc/security/limits.conf
+
+
 ###########################################################################################################
 ## Clear the yum cache
 ###########################################################################################################
