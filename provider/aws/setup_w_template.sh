@@ -189,6 +189,8 @@ cat <<EOF > $PG_HOME_DIR/data/pg_hba.conf
   host    phoenix         phoenix        0.0.0.0/0                md5  
   host    registry        registry       0.0.0.0/0                md5
   host    streamsmsgmgr   streamsmsgmgr  0.0.0.0/0                md5
+  host    nifireg         nifireg        0.0.0.0/0                md5
+  host    efm             efm            0.0.0.0/0                md5
 EOF
 
 chown postgres:postgres $PG_HOME_DIR/data/pg_hba.conf
@@ -213,6 +215,8 @@ CREATE ROLE hbase LOGIN PASSWORD 'supersecret1';
 CREATE ROLE phoenix LOGIN PASSWORD 'supersecret1';
 CREATE ROLE registry LOGIN PASSWORD 'supersecret1';
 CREATE ROLE streamsmsgmgr LOGIN PASSWORD 'supersecret1';
+CREATE ROLE nifireg LOGIN PASSWORD 'supersecret1';
+CREATE ROLE efm LOGIN PASSWORD 'supersecret1';
 CREATE DATABASE das OWNER das ENCODING 'UTF-8';
 CREATE DATABASE hive OWNER hive ENCODING 'UTF-8';
 CREATE DATABASE hue OWNER hue ENCODING 'UTF-8';
@@ -222,8 +226,10 @@ CREATE DATABASE rman OWNER rman ENCODING 'UTF-8';
 CREATE DATABASE scm OWNER scm ENCODING 'UTF-8';
 CREATE DATABASE hbase OWNER hbase ENCODING 'UTF-8';
 CREATE DATABASE phoenix OWNER phoenix ENCODING 'UTF-8';
-CREATE DATABASE registry OWNER phoenix ENCODING 'UTF-8';
-CREATE DATABASE streamsmsgmgr OWNER phoenix ENCODING 'UTF-8';
+CREATE DATABASE registry OWNER registry ENCODING 'UTF-8';
+CREATE DATABASE streamsmsgmgr OWNER streamsmsgmgr ENCODING 'UTF-8';
+CREATE DATABASE nifireg OWNER nifireg ENCODING 'UTF-8';
+CREATE DATABASE efm OWNER efm ENCODING 'UTF-8';
 EOF
 
 ###########################################################################################################
