@@ -323,7 +323,8 @@ cd /opt/cloudera/parcel-repo
 
 chown cloudera-scm:cloudera-scm /opt/cloudera/parcel-repo/*
 
-
+# change back to starting dir
+cd /root/horizon-dc/provider/aws
 
 ###########################################################################################################
 echo "-- Start CM, it takes about 2 minutes to be ready"
