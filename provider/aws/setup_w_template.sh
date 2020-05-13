@@ -109,6 +109,7 @@ echo "-- Configure networking"
 ###########################################################################################################
 PUBLIC_IP=`curl https://api.ipify.org/`
 hostnamectl set-hostname `hostname -f`
+PRIVATE_IP=`ip route get 1 | awk '{print $NF;exit}'`
 
 echo "`hostname -I` `hostname`" >> /etc/hosts
 sed -i "s/HOSTNAME=.*/HOSTNAME=`hostname`/" /etc/sysconfig/network
@@ -353,6 +354,9 @@ pip install --upgrade pip cm_client
 ###########################################################################################################
 sed -i "s/YourHostname/`hostname -f`/g" $TEMPLATE
 sed -i "s/YourHostname/`hostname -f`/g" scripts/create_cluster.py
+# CDSW items
+sed -i "s/YourCDSWDomain/cdsw.$PUBLIC_IP.nip.io/g" $TEMPLATE
+sed -i "s/YourPrivateIP/$PRIVATE_IP/g" $TEMPLATE
 
 ###########################################################################################################
 # create the cluster with API
