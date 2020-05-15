@@ -13,6 +13,7 @@ mkdir -p /opt/cloudera/cem
 #wget https://archive.cloudera.com/CEM/centos7/1.x/updates/1.0.0.0/CEM-1.0.0.0-centos7-tars-tarball.tar.gz -P /opt/cloudera/cem
 cd /opt/cloudera/cem
 
+# pull from my s3 bucket
 /usr/local/bin/aws s3 cp s3://zbuild-stuff/other/CEM-1.1.1.0-25-centos7-tars-tarball.tar.gz .
 tar xzf /opt/cloudera/cem/CEM-1.0.0.0-centos7-tars-tarball.tar.gz -C /opt/cloudera/cem
 tar xzf /opt/cloudera/cem/CEM/centos7/1.1.1.0/tars/efm/efm-1.0.0.1.1.1.0-25-bin.tar.gz -C /opt/cloudera/cem
