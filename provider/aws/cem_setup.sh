@@ -27,9 +27,9 @@ chown -R root:root /opt/cloudera/cem/efm-1.0.0.1.1.1.0-25
 chown -R root:root /opt/cloudera/cem/minifi-0.6.0.1.1.1.0-25
 chown -R root:root /opt/cloudera/cem/minifi-toolkit-0.6.0.1.1.1.0-25
 rm -f /opt/cloudera/cem/efm/conf/efm.properties
-cp ./other/efm.properties /opt/cloudera/cem/efm/conf
+cp /root/horizon-dc/provider/aws/other/efm.properties /opt/cloudera/cem/efm/conf
 rm -f /opt/cloudera/cem/minifi/conf/bootstrap.conf
-cp ./other/bootstrap.conf /opt/cloudera/cem/minifi/conf
+cp /root/horizon-dc/provider/aws/other/bootstrap.conf /opt/cloudera/cem/minifi/conf
 sed -i "s/YourHostname/`hostname -f`/g" /opt/cloudera/cem/efm/conf/efm.properties
 sed -i "s/YourHostname/`hostname -f`/g" /opt/cloudera/cem/minifi/conf/bootstrap.conf
 /opt/cloudera/cem/minifi/bin/minifi.sh install
