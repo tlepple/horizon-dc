@@ -43,14 +43,17 @@ wget https://repo1.maven.org/maven2/org/apache/nifi/nifi-mqtt-nar/1.8.0/nifi-mqt
 chown root:root /opt/cloudera/cem/minifi/lib/nifi-mqtt-nar-1.8.0.nar
 chmod 660 /opt/cloudera/cem/minifi/lib/nifi-mqtt-nar-1.8.0.nar
 
+wget https://repo1.maven.org/maven2/org/apache/nifi/nifi-kafka-2-0-nar/1.8.0/nifi-kafka-2-0-nar-1.8.0.nar -P /opt/cloudera/cem/minifi/lib
+chown root:root /opt/cloudera/cem/minifi/lib/nifi-kafka-2-0-nar-1.8.0.nar
+chmod 660 /opt/cloudera/cem/minifi/lib/nifi-kafka-2-0-nar-1.8.0.nar
+
 echo "-- Install Mosquitto and MQTT"
-#yum install -y mosquitto
-#pip install paho-mqtt
-#systemctl enable mosquitto
-#systemctl start mosquitto
-#git clone https://github.com/phdata/edge2ai-workshop ~/edge2ai-workshop
-#mv ~/edge2ai-workshop/mqtt.* ~
-#mv ~/edge2ai-workshop/spark.iot* ~
+yum install -y mosquitto
+pip install paho-mqtt
+systemctl enable mosquitto
+systemctl start mosquitto
+mv ~/horizon-dc/provider/aws/other/mqtt_stuff/mqtt.* ~
+mv ~/horizon-dc/provider/aws/other/spark_stuff/spark.iot* ~
 
 echo "-- Start EFM and Minifi"
 service efm start
