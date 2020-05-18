@@ -37,9 +37,11 @@ sed -i "s/YourHostname/`hostname -f`/g" /opt/cloudera/cem/minifi/conf/bootstrap.
 echo "-- Configure MiNiFi to run MQTT NAR"
 # might need to update all these nifi versions to latest
 #wget http://central.maven.org/maven2/org/apache/nifi/nifi-mqtt-nar/1.8.0/nifi-mqtt-nar-1.8.0.nar -P /opt/cloudera/cem/minifi/lib
-wget https://repo1.maven.org/maven2/org/apache/nifi/nifi-mqtt-nar/1.11.1/nifi-mqtt-nar-1.11.1.nar -P /opt/cloudera/cem/minifi/lib
-chown root:root /opt/cloudera/cem/minifi/lib/nifi-mqtt-nar-1.11.1.nar
-chmod 660 /opt/cloudera/cem/minifi/lib/nifi-mqtt-nar-1.11.1.nar
+#wget https://repo1.maven.org/maven2/org/apache/nifi/nifi-mqtt-nar/1.11.1/nifi-mqtt-nar-1.11.1.nar -P /opt/cloudera/cem/minifi/lib
+
+wget https://repo1.maven.org/maven2/org/apache/nifi/nifi-mqtt-nar/1.8.0/nifi-mqtt-nar-1.8.0.nar  -P /opt/cloudera/cem/minifi/lib
+chown root:root /opt/cloudera/cem/minifi/lib/nifi-mqtt-nar-1.8.0.nar
+chmod 660 /opt/cloudera/cem/minifi/lib/nifi-mqtt-nar-1.8.0.nar
 
 echo "-- Install Mosquitto and MQTT"
 #yum install -y mosquitto
