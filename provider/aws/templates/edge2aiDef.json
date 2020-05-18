@@ -204,7 +204,7 @@
         },
         {
           "name": "cdsw.domain.config",
-          "value": ""cdsw.YourCDSWDomain.nip.io"
+          "value": "cdsw.YourCDSWDomain.nip.io"
         },
         {
           "name": "yarn_service",
