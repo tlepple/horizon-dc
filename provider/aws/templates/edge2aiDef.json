@@ -257,7 +257,7 @@
       "serviceConfigs": [
         {
           "name": "data_analytics_studio_database_host",
-          "value": "YourHostname"
+          "value": "ip-10-0-8-66.us-east-2.compute.internal"
         },
         {
           "name": "data_analytics_studio_database_password",
@@ -604,7 +604,7 @@
           "configs": [
             {
               "name": "ranger_database_host",
-              "value": "YourHostname"
+              "value": "ip-10-0-8-66.us-east-2.compute.internal"
             },
             {
               "name": "ranger_database_password",
@@ -637,7 +637,7 @@
         },
         {
           "name": "cm.metrics.host",
-          "value": "YourHostname"
+          "value": "ip-10-0-8-66.us-east-2.compute.internal"
         }
       ],
       "roleConfigGroups": [
@@ -651,7 +651,7 @@
             },
             {
               "name": "streams.messaging.manager.storage.connector.connectURI",
-              "value": "jdbc:postgresql://YourHostname:5432/streamsmsgmgr"
+              "value": "jdbc:postgresql://ip-10-0-8-66.us-east-2.compute.internal:5432/streamsmsgmgr"
             },
             {
               "name": "SMM_HEAP_SIZE",
@@ -776,7 +776,7 @@
     "clusterName": "WWBank",
     "hosts": [
       {
-        "hostName": "YourHostname",
+        "hostName": "ip-10-0-8-66.us-east-2.compute.internal",
         "hostTemplateRefName": "MasterTemplate"
       }
     ],
@@ -791,7 +791,7 @@
       },
       {
         "name": "hive-hive_metastore_database_host",
-        "value": "YourHostname"
+        "value": "ip-10-0-8-66.us-east-2.compute.internal"
       },
       {
         "name": "hive-hive_metastore_database_name",
@@ -811,7 +811,7 @@
       },
       {
         "name": "hue-database_host",
-        "value": "YourHostname"
+        "value": "ip-10-0-8-66.us-east-2.compute.internal"
       },
       {
         "name": "hue-database_password",
@@ -859,7 +859,7 @@
       },
       {
         "name": "nifitoolkitca-nifi.toolkit.tls.ca.server.token",
-        "value": "supersecret1"
+        "value": "Nifirockstheboat"
       },
       {
         "name": "ranger-RANGER_ADMIN-BASE-ranger_database_password",
