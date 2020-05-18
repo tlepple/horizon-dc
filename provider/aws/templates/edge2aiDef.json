@@ -204,7 +204,7 @@
         },
         {
           "name": "cdsw.domain.config",
-          "value": "cdsw.cdsw.3.23.150.221.nip.io.nip.io"
+          "value": ""cdsw.YourCDSWDomain.nip.io"
         },
         {
           "name": "yarn_service",
@@ -224,7 +224,7 @@
         },
         {
           "name": "cdsw.master.ip.config",
-          "value": "10.0.8.202"
+          "value": "YourPrivateIP"
         }
       ],
       "roleConfigGroups": [
@@ -257,7 +257,7 @@
       "serviceConfigs": [
         {
           "name": "data_analytics_studio_database_host",
-          "value": "ip-10-0-8-66.us-east-2.compute.internal"
+          "value": "YourHostname"
         },
         {
           "name": "data_analytics_studio_database_password",
@@ -604,7 +604,7 @@
           "configs": [
             {
               "name": "ranger_database_host",
-              "value": "ip-10-0-8-66.us-east-2.compute.internal"
+              "value": "YourHostname"
             },
             {
               "name": "ranger_database_password",
@@ -637,7 +637,7 @@
         },
         {
           "name": "cm.metrics.host",
-          "value": "ip-10-0-8-66.us-east-2.compute.internal"
+          "value": "YourHostname"
         }
       ],
       "roleConfigGroups": [
@@ -651,7 +651,7 @@
             },
             {
               "name": "streams.messaging.manager.storage.connector.connectURI",
-              "value": "jdbc:postgresql://ip-10-0-8-66.us-east-2.compute.internal:5432/streamsmsgmgr"
+              "value": "jdbc:postgresql://YourHostname:5432/streamsmsgmgr"
             },
             {
               "name": "SMM_HEAP_SIZE",
@@ -776,7 +776,7 @@
     "clusterName": "WWBank",
     "hosts": [
       {
-        "hostName": "ip-10-0-8-66.us-east-2.compute.internal",
+        "hostName": "YourHostname",
         "hostTemplateRefName": "MasterTemplate"
       }
     ],
@@ -791,7 +791,7 @@
       },
       {
         "name": "hive-hive_metastore_database_host",
-        "value": "ip-10-0-8-66.us-east-2.compute.internal"
+        "value": "YourHostname"
       },
       {
         "name": "hive-hive_metastore_database_name",
@@ -811,7 +811,7 @@
       },
       {
         "name": "hue-database_host",
-        "value": "ip-10-0-8-66.us-east-2.compute.internal"
+        "value": "YourHostname"
       },
       {
         "name": "hue-database_password",
