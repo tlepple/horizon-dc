@@ -575,7 +575,7 @@
       },
       {
         "name": "ranger-ranger_database_host",
-        "value": "YourHostnamel"
+        "value": "YourHostname"
       },
       {
         "name": "ranger-ranger_database_password",
