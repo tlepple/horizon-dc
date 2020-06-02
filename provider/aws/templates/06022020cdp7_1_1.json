@@ -402,57 +402,31 @@
         }
       ]
     },
-    {
+     {
       "refName": "streams_messaging_manager",
       "serviceType": "STREAMS_MESSAGING_MANAGER",
       "serviceConfigs": [
         {
-          "name": "zookeeper_service",
-          "ref": "zookeeper"
+          "name": "smm_database_password",
+          "variable": "streams_messaging_manager-smm_database_password"
         },
         {
-          "name": "cm.metrics.password",
-          "variable": "streams_messaging_manager-cm.metrics.password"
+          "name": "smm_database_port",
+          "variable": "streams_messaging_manager-smm_database_port"
         },
         {
-          "name": "kafka_service",
-          "ref": "kafka"
+          "name": "smm_database_type",
+          "variable": "streams_messaging_manager-smm_database_type"
         },
         {
-          "name": "cm.metrics.service.name",
-          "value": "kafka"
-        },
-        {
-          "name": "cm.metrics.host",
-          "value": "YourHostname"
+          "name": "smm_database_host",
+          "variable": "streams_messaging_manager-smm_database_host"
         }
       ],
       "roleConfigGroups": [
         {
           "refName": "streams_messaging_manager-STREAMS_MESSAGING_MANAGER_SERVER-BASE",
           "roleType": "STREAMS_MESSAGING_MANAGER_SERVER",
-          "configs": [
-            {
-              "name": "streams.messaging.manager.storage.connector.password",
-              "variable": "streams_messaging_manager-STREAMS_MESSAGING_MANAGER_SERVER-BASE-streams.messaging.manager.storage.connector.password"
-            },
-            {
-              "name": "streams.messaging.manager.storage.connector.connectURI",
-              "value": "jdbc:postgresql://YourHostname:5432/streamsmsgmgr"
-            },
-            {
-              "name": "SMM_HEAP_SIZE",
-              "value": "2048"
-            },
-            {
-              "name": "streams.messaging.manager.kafka.client.security.protocol",
-              "value": "PLAINTEXT"
-            },
-            {
-              "name": "streams.messaging.manager.schema.registry.url",
-              "value": "http://localhost:7788/api/v1"
-            }
-          ],
           "base": true
         },
         {
@@ -624,13 +598,21 @@
         "value": "supersecret1"
       },
       {
-        "name": "streams_messaging_manager-STREAMS_MESSAGING_MANAGER_SERVER-BASE-streams.messaging.manager.storage.connector.password",
+        "name": "streams_messaging_manager-smm_database_host",
+        "value": "YourHostname"
+      },
+      {
+        "name": "streams_messaging_manager-smm_database_password",
         "value": "supersecret1"
       },
       {
-        "name": "streams_messaging_manager-cm.metrics.password",
-        "value": "admin"
-      }
+        "name": "streams_messaging_manager-smm_database_port",
+        "value": "5432"
+      },
+      {
+        "name": "streams_messaging_manager-smm_database_type",
+        "value": "postgresql"
+      } 
     ]
   }
 }
