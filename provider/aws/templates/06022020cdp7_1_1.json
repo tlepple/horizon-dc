@@ -540,6 +540,10 @@
       {
         "hostName": "YourHostname",
         "hostTemplateRefName": "MasterTemplate"
+      },
+      {
+        "hostNameRange": "<HOST[0001-0002]>",
+        "hostTemplateRefName": "MasterTemplate"
       }
     ],
     "variables": [
