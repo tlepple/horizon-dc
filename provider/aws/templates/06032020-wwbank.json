@@ -175,24 +175,34 @@
       "serviceType": "SCHEMAREGISTRY",
       "serviceConfigs": [
         {
-          "name": "zookeeper_service",
-          "ref": "zookeeper"
+          "name": "database_type",
+          "variable": "schemaregistry-database_type"
+        },
+        {
+          "name": "database_port",
+          "variable": "schemaregistry-database_port"
+        },
+        {
+          "name": "database_host",
+          "variable": "schemaregistry-database_host"
+        },
+        {
+          "name": "database_name",
+          "variable": "schemaregistry-database_name"
+        },
+        {
+          "name": "database_password",
+          "variable": "schemaregistry-database_password"
+        },
+        {
+          "name": "database_user",
+          "variable": "schemaregistry-database_user"
         }
       ],
       "roleConfigGroups": [
         {
           "refName": "schemaregistry-SCHEMA_REGISTRY_SERVER-BASE",
           "roleType": "SCHEMA_REGISTRY_SERVER",
-          "configs": [
-            {
-              "name": "schema.registry.storage.connector.password",
-              "variable": "schemaregistry-SCHEMA_REGISTRY_SERVER-BASE-schema.registry.storage.connector.password"
-            },
-            {
-              "name": "schema.registry.storage.connector.connectURI",
-              "value": "jdbc:postgresql://localhost:5432/registry"
-            }
-          ],
           "base": true
         }
       ]
