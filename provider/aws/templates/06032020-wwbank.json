@@ -621,9 +621,29 @@
         "name": "ranger-rangerusersync_user_password",
         "value": "supersecret1"
       },
+     {
+        "name": "schemaregistry-database_host",
+        "value": "YourHostname"
+      },
       {
-        "name": "schemaregistry-SCHEMA_REGISTRY_SERVER-BASE-schema.registry.storage.connector.password",
+        "name": "schemaregistry-database_name",
+        "value": "registry"
+      },
+      {
+        "name": "schemaregistry-database_password",
         "value": "supersecret1"
+      },
+      {
+        "name": "schemaregistry-database_port",
+        "value": "5432"
+      },
+      {
+        "name": "schemaregistry-database_type",
+        "value": "postgresql"
+      },
+      {
+        "name": "schemaregistry-database_user",
+        "value": "registry"
       },
       {
         "name": "streams_messaging_manager-STREAMS_MESSAGING_MANAGER_SERVER-BASE-streams.messaging.manager.storage.connector.password",
