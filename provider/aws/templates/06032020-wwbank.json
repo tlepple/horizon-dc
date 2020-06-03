@@ -253,6 +253,14 @@
       "serviceType": "RANGER",
       "serviceConfigs": [
         {
+          "name": "ranger_database_host",
+          "variable": "ranger-ranger_database_host"
+        },
+        {
+          "name": "ranger_database_password",
+          "variable": "ranger-ranger_database_password"
+        },   
+        {
           "name": "rangeradmin_user_password",
           "variable": "ranger-rangeradmin_user_password"
         },
@@ -289,16 +297,6 @@
         {
           "refName": "ranger-RANGER_ADMIN-BASE",
           "roleType": "RANGER_ADMIN",
-          "configs": [
-            {
-              "name": "ranger_database_host",
-              "value": "YourHostname"
-            },
-            {
-              "name": "ranger_database_password",
-              "variable": "ranger-RANGER_ADMIN-BASE-ranger_database_password"
-            }
-          ],
           "base": true
         }
       ]
@@ -583,14 +581,18 @@
       },
       {
         "name": "hue-database_port",
-        "value": "5432"
+        "value": "5432a
       },
       {
         "name": "hue-database_type",
         "value": "postgresql"
       },
       {
-        "name": "ranger-RANGER_ADMIN-BASE-ranger_database_password",
+        "name": "ranger-ranger_database_host",
+        "value": "YourHostname"
+      },
+      {
+        "name": "ranger-ranger_database_password",
         "value": "supersecret1"
       },
       {
