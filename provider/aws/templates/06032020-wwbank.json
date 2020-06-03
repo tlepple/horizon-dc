@@ -220,6 +220,10 @@
           "value": "true"
         },
         {
+          "name": "hdfs_under_replicated_blocks_thresholds",
+          "value": "{\"warning\":\"never\",\"critical\":\"never\"}"
+        },
+        {
           "name": "dfs_permissions_supergroup",
           "value": "etl"
         }
