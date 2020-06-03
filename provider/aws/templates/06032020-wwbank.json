@@ -581,7 +581,7 @@
       },
       {
         "name": "hue-database_port",
-        "value": "5432a
+        "value": "5432"
       },
       {
         "name": "hue-database_type",
