@@ -1,4 +1,6 @@
+echo
 echo "Copying data to /hive_data dir in HDFS..."
+echo
 hdfs dfs -mkdir -p /hive_data/claim/
 hdfs dfs -mkdir -p /hive_data/cost_savings/
 hdfs dfs -mkdir -p /hive_data/finance/tax_2009/
@@ -26,5 +28,13 @@ hdfs dfs -put data/eu_countries.csv	                /hive_data/eu_countries/
 hdfs dfs -put data/employees_raw.csv                /hive_data/hr/employees_raw/
 hdfs dfs -put data/employees.csv                    /hive_data/hr/employees/
 
+echo
+echo "End - copying data to /hive_data dir in HDFS..."
+echo
 
+echo
+echo "List the contents..."
+echo
 hdfs dfs -chown -R hive:hive /hive_data/
+
+echo
