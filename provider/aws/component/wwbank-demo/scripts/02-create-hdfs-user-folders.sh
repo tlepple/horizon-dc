@@ -1,5 +1,9 @@
 #!/bin/bash
 
+echo
+echo "Create hdfs user folders..."
+echo
+
 hadoop fs -mkdir /user/admin
 hadoop fs -chown admin:hadoop /user/admin
 hadoop fs -mkdir /user/joe_analyst
