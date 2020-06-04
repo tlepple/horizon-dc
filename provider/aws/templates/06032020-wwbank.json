@@ -220,6 +220,10 @@
           "value": "true"
         },
         {
+          "name": "dfs_replication",
+          "value": "1"
+        },
+        {
           "name": "hdfs_under_replicated_blocks_thresholds",
           "value": "{\"warning\":\"never\",\"critical\":\"never\"}"
         },
