@@ -158,11 +158,15 @@ cd /root/horizon-dc/provider/aws/component/wwbank-demo
 ./scripts/03-copy-data-to-hdfs-dc.sh
 hdfs dfs -ls -R /hive_data
 
+echo
 echo "Create hive tables..."
+echo
 beeline  -n etl_user -f ./data/HiveSchema-dc.hsql
 beeline  -n etl_user -f ./data/TransSchema-dc.hsql
 
+echo
 echo "enable PAM auth for zeppelin, Hue..."
+echo
 setfacl -m user:zeppelin:r /etc/shadow
 setfacl -m user:hue:r /etc/shadow
 
