@@ -140,6 +140,9 @@ kadmin.local -q "xst -k kate_hr.keytab kate_hr/$(hostname -f)@${kdc_realm}"
 kadmin.local -q "xst -k etl_user.keytab etl_user/$(hostname -f)@${kdc_realm}" 
 chmod +r *.keytab
 
+echo
+echo "connect as etl_user with keytab..."
+echo
 kinit -kt /etc/security/keytabs/etl_user.keytab  etl_user/$(hostname -f)@${kdc_realm}
 hdfs dfs -mkdir -p /apps/hive/share/udfs/
 hdfs dfs -put /opt/cloudera/parcels/CDH/lib/hive/lib/hive-exec.jar /apps/hive/share/udfs/
