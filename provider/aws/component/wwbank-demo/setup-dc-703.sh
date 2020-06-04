@@ -182,24 +182,32 @@ cd ./interpreters/
 
 
 #login to zeppelin and grab cookie 
+echo
 cookie=$( curl -i --data "userName=etl_user&password=supersecret1" -X POST http://$(hostname -f):8885/api/login | grep HttpOnly  | tail -1  )
 echo "$cookie" > cookie.txt
 
 #Create shell interpreter setting
+echo
 curl -b ./cookie.txt -X POST http://$(hostname -f):8885/api/interpreter/setting -d @./shell.json
+echo
 
 #Create jdbc interpreter setting
+echo
 hivejar=$(ls /opt/cloudera/parcels/CDH/jars/hive-jdbc-3*-standalone.jar)
 sed -i.bak "s|__hivejar__|${hivejar}|g" ./jdbc.json
 KEYTABLOCATION=$(find /var/run/cloudera-scm-agent/process/ -type f ! -empty -printf "%T@ %Tc %p\n" | sort -z | grep zeppelin.keytab | head -n1 |awk '{ print $9 }')
 sed -i.bak "s|__keytablocation__|${KEYTABLOCATION}|g" ./jdbc.json
 KRBPRINCIPAL=zeppelin/$(hostname -f)@CLOUDERA.COM
 sed -i.bak "s|__krbprincipal__|${KRBPRINCIPAL}|g" ./jdbc.json
+echo
+
 curl -b ./cookie.txt -X POST http://$(hostname -f):8885/api/interpreter/setting -d @./jdbc.json
+echo
 
 #list all interpreters settings - jdbc and sh should now be added
+echo
 curl -b ./cookie.txt http://$(hostname -f):8885/api/interpreter/setting | python -m json.tool | grep "id"
-
+echo
 
 #import zeppelin notebooks
 cd /var/lib/zeppelin/notebook
@@ -224,6 +232,7 @@ chown -R  zeppelin:zeppelin /var/lib/zeppelin/notebook
 ###########################################################################################################
 #
 ###########################################################################################################
+echo
 echo "atlas classification items..."
 echo
 cd /root/horizon-dc/provider/aws/component/wwbank-demo/scripts
@@ -236,11 +245,14 @@ sed -i.bak "s/ATLAS_PASS=admin/ATLAS_PASS=${atlas_pass}/g" env_atlas.sh
 
 echo "hbase and kafka items..."
 ./05-create-hbase-kafka-dc.sh
+echo
 
 echo "Sleeping for 60s..."
+echo
 sleep 60
 
 echo "associate entities with tags..."
+echo
 ./06-associate-entities-with-tags-dc.sh
 
 ###########################################################################################################
