@@ -311,8 +311,8 @@ cd /opt/cloudera/csd
 /usr/local/bin/aws s3 cp s3://zbuild-stuff/csd/NIFI-1.11.4.1.1.0.0-119.jar .
 /usr/local/bin/aws s3 cp s3://zbuild-stuff/csd/NIFICA-1.11.4.1.1.0.0-119.jar .
 /usr/local/bin/aws s3 cp s3://zbuild-stuff/csd/NIFIREGISTRY-0.6.0.1.1.0.0-119.jar .
-#/usr/local/bin/aws s3 cp s3://zbuild-stuff/csd/SCHEMAREGISTRY-0.8.0.jar .
-#/usr/local/bin/aws s3 cp s3://zbuild-stuff/csd/STREAMS_MESSAGING_MANAGER-2.1.0.jar .
+/usr/local/bin/aws s3 cp s3://zbuild-stuff/csd/SCHEMAREGISTRY-0.8.0.jar .
+/usr/local/bin/aws s3 cp s3://zbuild-stuff/csd/STREAMS_MESSAGING_MANAGER-2.1.0.jar .
 /usr/local/bin/aws s3 cp s3://zbuild-stuff/csd/CLOUDERA_DATA_SCIENCE_WORKBENCH-CDPDC-1.7.2.jar .
 /usr/local/bin/aws s3 cp s3://zbuild-stuff/csd/FLINK-1.9.1-csa1.1.0.0-cdh7.0.3.0-79-1753674.jar .
 
@@ -329,8 +329,8 @@ cd /opt/cloudera/parcel-repo
 /usr/local/bin/aws s3 cp s3://zbuild-stuff/parcel/CFM-1.1.0.0-el7.parcel .
 /usr/local/bin/aws s3 cp s3://zbuild-stuff/parcel/FLINK-1.9.1-csa1.1.0.0-cdh7.0.3.0-79-1753674-el7.parcel .
 /usr/local/bin/aws s3 cp s3://zbuild-stuff/parcel/KAFKA-4.1.0-1.4.1.0.p0.4-el7.parcel .
-#/usr/local/bin/aws s3 cp s3://zbuild-stuff/parcel/SCHEMAREGISTRY-0.8.0.2.0.1.0-29-el7.parcel .
-#/usr/local/bin/aws s3 cp s3://zbuild-stuff/parcel/STREAMS_MESSAGING_MANAGER-2.1.0.2.0.1.0-29-el7.parcel .
+/usr/local/bin/aws s3 cp s3://zbuild-stuff/parcel/SCHEMAREGISTRY-0.8.0.2.0.1.0-29-el7.parcel .
+/usr/local/bin/aws s3 cp s3://zbuild-stuff/parcel/STREAMS_MESSAGING_MANAGER-2.1.0.2.0.1.0-29-el7.parcel .
 
 
 #SHAs
@@ -338,8 +338,8 @@ cd /opt/cloudera/parcel-repo
 /usr/local/bin/aws s3 cp s3://zbuild-stuff/sha/CFM-1.1.0.0-el7.parcel.sha .
 /usr/local/bin/aws s3 cp s3://zbuild-stuff/sha/FLINK-1.9.1-csa1.1.0.0-cdh7.0.3.0-79-1753674-el7.parcel.sha .
 /usr/local/bin/aws s3 cp s3://zbuild-stuff/sha/KAFKA-4.1.0-1.4.1.0.p0.4-el7.parcel.sha .
-#/usr/local/bin/aws s3 cp s3://zbuild-stuff/sha/SCHEMAREGISTRY-0.8.0.2.0.1.0-29-el7.parcel.sha .
-#/usr/local/bin/aws s3 cp s3://zbuild-stuff/sha/STREAMS_MESSAGING_MANAGER-2.1.0.2.0.1.0-29-el7.parcel.sha .
+/usr/local/bin/aws s3 cp s3://zbuild-stuff/sha/SCHEMAREGISTRY-0.8.0.2.0.1.0-29-el7.parcel.sha .
+/usr/local/bin/aws s3 cp s3://zbuild-stuff/sha/STREAMS_MESSAGING_MANAGER-2.1.0.2.0.1.0-29-el7.parcel.sha .
 
 #set ownership parcels and SHAs:
 
