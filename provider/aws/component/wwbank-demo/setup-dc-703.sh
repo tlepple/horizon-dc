@@ -302,7 +302,7 @@ echo "Setup Complete"
 echo
 echo
 
-. ~/horizon-dc/bin/echo_service_conns.sh
+. ~/horizon-dc/bin/echo_wwbank_conns.sh
 
 exit 0
 ###########################################################################################################
