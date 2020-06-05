@@ -249,6 +249,7 @@ sed -i.bak "s/ATLAS_PASS=admin/ATLAS_PASS=${atlas_pass}/g" env_atlas.sh
 
 ./04-atlas-import-classification.sh
 
+echo
 echo "hbase and kafka items..."
 ./05-create-hbase-kafka-dc.sh
 echo
