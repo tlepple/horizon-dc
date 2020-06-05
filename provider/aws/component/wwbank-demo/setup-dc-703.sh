@@ -97,11 +97,14 @@ resource_policies=$(ls Ranger_Policies_ALL_*.json)
 tag_policies=$(ls Ranger_Policies_TAG_*.json)
 
 #import resource based policies
+echo
+echo "import resource based policies..."
 ${ranger_curl} -X POST -H "Content-Type: multipart/form-data" -H "Content-Type: application/json" -F "file=@${resource_policies}" -H "Accept: application/json"  -F "servicesMapJson=@servicemapping-all.json" "${ranger_url}/plugins/policies/importPoliciesFromFile?isOverride=true&serviceType=hdfs,tag,hbase,yarn,hive,knox,kafka,atlas,solr"
 
 echo
 
 #import tag based policies
+echo "import tag based policies..."
 ${ranger_curl} -X POST -H "Content-Type: multipart/form-data" -H "Content-Type: application/json" -F "file=@${tag_policies}" -H "Accept: application/json"  -F "servicesMapJson=@servicemapping-tag.json" "${ranger_url}/plugins/policies/importPoliciesFromFile?isOverride=true&serviceType=tag"
 
 cd ..
