@@ -39,6 +39,9 @@ echo
 #check that CDSW is ready   
 #check_cdsw
 
+# copy the zeppelin keytab
+. ${starting_dir}/bin/zepplin_keytab_retrieval.sh
+
 #echo services connections
 . ${starting_dir}/bin/echo_service_conns.sh
 
