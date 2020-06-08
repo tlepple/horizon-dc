@@ -185,7 +185,9 @@ sleep 5
 
 cd ./interpreters/
 
-
+#copy the keytab to a common location from the dynamic location that gets created at every restart
+echo "copying zeppelin runtime keytab..."
+. ~/horizon-dc/bin/zepplin_keytab_retrieval.sh
 
 #login to zeppelin and grab cookie 
 echo
@@ -201,7 +203,9 @@ echo
 echo
 hivejar=$(ls /opt/cloudera/parcels/CDH/jars/hive-jdbc-3*-standalone.jar)
 sed -i.bak "s|__hivejar__|${hivejar}|g" ./jdbc.json
-KEYTABLOCATION=$(find /var/run/cloudera-scm-agent/process/ -type f ! -empty -printf "%T@ %Tc %p\n" | sort -z | grep zeppelin.keytab | head -n1 |awk '{ print $9 }')
+#KEYTABLOCATION=$(find /var/run/cloudera-scm-agent/process/ -type f ! -empty -printf "%T@ %Tc %p\n" | sort -z | grep zeppelin.keytab | head -n1 |awk '{ print $9 }')
+# setting to a static location
+KEYTABLOCATION="/etc/security/keytabs/zeppelin.keytab"
 sed -i.bak "s|__keytablocation__|${KEYTABLOCATION}|g" ./jdbc.json
 KRBPRINCIPAL=zeppelin/$(hostname -f)@CLOUDERA.COM
 sed -i.bak "s|__krbprincipal__|${KRBPRINCIPAL}|g" ./jdbc.json
