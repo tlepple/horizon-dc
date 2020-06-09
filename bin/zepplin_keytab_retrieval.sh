@@ -18,7 +18,8 @@ if [ ! -e $KEYTABLOCATION ] ; then
 fi
 
 echo "Copying current Zeppelin keytab from runtime to static directory..." 
-cp $KEYTABLOCATION $DEST
+# need to escape the cp -i alias
+\cp $KEYTABLOCATION $DEST
 chown zeppelin:zeppelin /etc/security/keytabs/zeppelin.keytab
 chmod g+r /etc/security/keytabs/zeppelin.keytab
 echo "Keytab written to destination."
