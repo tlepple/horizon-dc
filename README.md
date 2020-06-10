@@ -50,7 +50,11 @@ cd /root/horizon-dc/provider/aws
 
 *  This script will take approximately 40 minutes to complete.  It will provide you a login URL to your new CM Host.
 
+###  Sample output that will call the public ip of your new host:
 
+```
+login to CM  "http://1.1.1.1:7180" user:admin, pwd:admin
+```
 ---
 ---
 
