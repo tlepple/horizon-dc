@@ -58,3 +58,7 @@ login to CM  "http://1.1.1.1:7180" user:admin, pwd:admin
 ---
 ---
 
+###  Fix Cloudera Manager Java paramters and restart the service:
+
+![](./provider/aws/component/documentation/configureCM.gif)
+
