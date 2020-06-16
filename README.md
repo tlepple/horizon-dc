@@ -55,10 +55,10 @@ cd /root/horizon-dc/provider/aws
 ```
 login to CM  "http://1.1.1.1:7180" user:admin, pwd:admin
 ```
----
+
 ---
 
-###  Fix Cloudera Manager Java paramters and restart the service:
+###  Fix Cloudera Manager Java parameters and restart the service:
 
 ![](./provider/aws/component/documentation/configureCM.gif)
 
@@ -67,3 +67,6 @@ login to CM  "http://1.1.1.1:7180" user:admin, pwd:admin
 ### Suppress Erassure Encoding Warning
 
 ![](./provider/aws/component/documentation/suppressEC.gif)
+
+---
+
