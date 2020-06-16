@@ -45,7 +45,7 @@ export AWS_DEFAULT_REGION=<aws region you want to run in>
 cd /root/horizon-dc/provider/aws
 
 #  Run the script:
-. setup_w_template.sh templates/bkp.06032020-wwbank.json
+. setup_w_template.sh templates/wwbank-cdpdc-7-1-1.json
 ```
 
 *  This script will take approximately 40 minutes to complete.  It will provide you a login URL to your new CM Host.
