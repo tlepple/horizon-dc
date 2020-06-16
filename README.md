@@ -108,6 +108,7 @@ KDC Server Host --> FQDN Host
 
 KDC Admin Server Host --> FQDN Host
 
+# Enter Account Credentials
 user --> cloudera-scm/admin@CLOUDERA.COM
 pwd  --> supersecret1
 
