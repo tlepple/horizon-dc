@@ -6,7 +6,7 @@
 
 ## Acknowledgments:
 
-*  Huge shout out to Fabio Ghirardello whose repo was the foundational inspiration for many items provided here.  His original repository can be found here: [IoT-Predictive Maintenance](https://github.com/fabiog1901/IoT-predictive-maintenance)
+*  Huge shout-out to Fabio Ghirardello whose repo was the foundational inspiration for many items provided here.  His original repository can be found here: [IoT-Predictive Maintenance](https://github.com/fabiog1901/IoT-predictive-maintenance)
 
 ---
 
