@@ -69,4 +69,13 @@ login to CM  "http://1.1.1.1:7180" user:admin, pwd:admin
 ![](./provider/aws/component/documentation/suppressEC.gif)
 
 ---
+---
+
+## The below sections are only needed if you want to setup and run the wwbank demo.
+
+## Acknowledgments:
+
+*  Huge shout-out to Ali Bajwa who created most of the assets used in the build code found below.  His original repository can be found here: [Partner Security Workshops](https://github.com/abajwa-hw/masterclass)
+
+
 
