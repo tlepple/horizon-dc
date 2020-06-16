@@ -92,4 +92,19 @@ cd /root/horizon-dc/provider/aws
 ```
 
 
+---
 
+### Enable Kerberos in Cloudera Manager
+
+* Crendentials used in the wizard.
+
+```
+user --> cloudera-scm/admin@CLOUDERA.COM
+pwd  --> supersecret1
+
+```
+
+![](./provider/aws/component/documentation/enableKrbCM.gif)
+
+![](./provider/aws/component/documentation/finishEnableKrbCM.gif)
+---
