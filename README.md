@@ -75,7 +75,21 @@ login to CM  "http://1.1.1.1:7180" user:admin, pwd:admin
 
 ## Acknowledgments:
 
-*  Huge shout-out to Ali Bajwa who created most of the assets used in the build code found below.  His original repository can be found here: [Partner Security Workshops](https://github.com/abajwa-hw/masterclass)
+*  Huge shout-out to Ali Bajwa who created the assets used in the build code found below.  His original repository can be found here: [Partner Security Workshops](https://github.com/abajwa-hw/masterclass)
+
+---
+---
+
+###  Install MIT Kerberos into the OS via script
+
+```
+# run as root user:
+sudo -i
+
+cd /root/horizon-dc/provider/aws
+
+. install_krb.sh
+```
 
 
 
