@@ -162,6 +162,10 @@
         {
           "refName": "zookeeper-SERVER-BASE",
           "roleType": "SERVER",
+          "configs" : [ {
+        "name" : "maxClientCnxns",
+        "value" : "0"
+      } ],
           "base": true
         }
       ]
