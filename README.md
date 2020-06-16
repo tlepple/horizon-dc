@@ -99,8 +99,18 @@ cd /root/horizon-dc/provider/aws
 * Crendentials used in the wizard.
 
 ```
+
+Kerboros Encryption Type --> aes256-cts-hmac-sha1-96
+
+DOMAIN --> CLOUDERA.COM
+
+KDC Server Host --> FQDN Host
+
+KDC Admin Server Host --> FQDN Host
+
 user --> cloudera-scm/admin@CLOUDERA.COM
 pwd  --> supersecret1
+
 
 ```
 
