@@ -145,7 +145,7 @@ select * from cost_savings.claim_savings limit 5;
 ---
 ---
 
-### Sample SparkSQL queries for use `joe_analyst`
+### Sample SparkSQL queries for user `joe_analyst`
 
 ---
 
