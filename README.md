@@ -64,7 +64,7 @@ login to CM  "http://1.1.1.1:7180" user:admin, pwd:admin
 
 ---
 
-### Suppress Erassure Encoding Warning
+### Suppress Erasure Encoding Warning
 
 ![](./provider/aws/component/documentation/suppressEC.gif)
 
