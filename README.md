@@ -104,9 +104,9 @@ Kerboros Encryption Type --> aes256-cts-hmac-sha1-96
 
 DOMAIN --> CLOUDERA.COM
 
-KDC Server Host --> FQDN Host
+KDC Server Host --> localhost
 
-KDC Admin Server Host --> FQDN Host
+KDC Admin Server Host --> localhost
 
 # Enter Account Credentials
 user --> cloudera-scm/admin@CLOUDERA.COM
