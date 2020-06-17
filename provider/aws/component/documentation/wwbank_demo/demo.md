@@ -23,7 +23,7 @@ cd /root/horizon-dc/provider/aws/component/wwbank-demo
 
 * Save the output of the above command for reference later
 
-###  Sample Output (these IPs are unique to your cluster build:
+###  Sample Output (these IPs are unique to your cluster build):
 
 ```
           ---------------------------------------------------------------------------------------------------------
