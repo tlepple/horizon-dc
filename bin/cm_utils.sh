@@ -150,7 +150,7 @@ start_cluster_services() {
 stop_cluster_services() {
     get_cluster_name
     get_cluster_entity_status
-    if [ ${CLUSTER_ENTITY_STATUS} == 'GOOD_HEALTH' ]; then
+    if [[ ${CLUSTER_ENTITY_STATUS} == 'GOOD_HEALTH' ]]; then
         echo "Stopping Cluster Services..."
         curl -X POST -u "admin:admin" "http://${CM_HOST}:7180/api/v40/clusters/${CLUSTER_NAME}/commands/stop"
     fi

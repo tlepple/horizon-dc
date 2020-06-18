@@ -20,7 +20,7 @@ echo
 echo "sleeping for 20s"
 sleep 20s
 
-while [ ${ARRAY_EQ} != 'YES' ]; do
+while [[ ${ARRAY_EQ} != 'YES' ]]; do
     new_all_services_status_eq
     echo;
     echo "sleeping for 20s"
