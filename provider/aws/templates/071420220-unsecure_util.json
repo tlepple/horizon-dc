@@ -112,10 +112,6 @@
         {
           "name": "hdfs_service",
           "ref": "hdfs"
-        },
-        {
-          "name": "ranger_service",
-          "ref": "ranger"
         }
       ],
       "roleConfigGroups": [
