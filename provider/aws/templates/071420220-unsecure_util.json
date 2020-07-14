@@ -53,10 +53,6 @@
           "ref": "zookeeper"
         },
         {
-          "name": "ranger_service",
-          "ref": "ranger"
-        },
-        {
           "name": "smm_database_type",
           "variable": "streams_messaging_manager-smm_database_type"
         },
