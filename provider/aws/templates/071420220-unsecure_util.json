@@ -180,10 +180,6 @@
           "ref": "hive"
         },
         {
-          "name": "atlas_service",
-          "ref": "atlas"
-        },
-        {
           "name": "hbase_service",
           "ref": "hbase"
         }
@@ -366,10 +362,6 @@
       "refName": "hbase",
       "serviceType": "HBASE",
       "serviceConfigs": [
-        {
-          "name": "hbase_atlas_hook_enable",
-          "value": "true"
-        }
       ],
       "roleConfigGroups": [
         {
@@ -624,7 +616,6 @@
       "refName": "MasterTemplate",
       "cardinality": 1,
       "roleConfigGroupsRefNames": [
-        "atlas-ATLAS_SERVER-BASE",
         "das-DAS_EVENT_PROCESSOR-BASE",
         "das-DAS_WEBAPP-BASE",
         "hbase-MASTER-BASE",
@@ -647,9 +638,6 @@
         "nifi-NIFI_NODE-BASE",
         "nifiregistry-NIFI_REGISTRY_SERVER-BASE",
         "nifitoolkitca-NIFI_TOOLKIT_SERVER-BASE",
-        "ranger-RANGER_ADMIN-BASE",
-        "ranger-RANGER_TAGSYNC-BASE",
-        "ranger-RANGER_USERSYNC-BASE",
         "schemaregistry-SCHEMA_REGISTRY_SERVER-BASE",
         "solr-SOLR_SERVER-BASE",
         "spark_on_yarn-GATEWAY-BASE",
