@@ -156,10 +156,6 @@
       "serviceType": "IMPALA",
       "serviceConfigs": [
         {
-          "name": "ranger_service",
-          "ref": "ranger"
-        },
-        {
           "name": "kudu_service",
           "ref": "kudu"
         },
