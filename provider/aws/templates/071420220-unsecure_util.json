@@ -144,6 +144,9 @@
             {
               "name": "fs_wal_dir",
               "variable": "kudu-KUDU_TSERVER-BASE-fs_wal_dir"
+            }, {
+              "name" : "memory_limit_hard_bytes",
+              "value" : "4947802324992"
             },
             {
               "name": "fs_data_dirs",
