@@ -122,6 +122,9 @@
             {
               "name": "fs_wal_dir",
               "variable": "kudu-KUDU_MASTER-BASE-fs_wal_dir"
+            }, {
+                "name" : "default_num_replicas",
+                "value" : "1"
             },
             {
               "name": "master_address",
