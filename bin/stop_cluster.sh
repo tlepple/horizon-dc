@@ -4,6 +4,9 @@ starting_dir=`pwd`
 
 export PRIVATE_IP=`ip route get 1 | awk '{print $NF;exit}'`
 
+# assumes the cm host is being run from host of this script
+export CM_HOST=`hostname -f`
+
 # Load util functions.
 . $starting_dir/bin/cm_utils.sh
 
