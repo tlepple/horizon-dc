@@ -7,16 +7,8 @@
   ],
   "products": [
     {
-      "version": "0.8.0.2.0.1.0-29",
-      "product": "SCHEMAREGISTRY"
-    },
-    {
       "version": "7.1.3-1.cdh7.1.1.p0.4992530",
       "product": "CDH"
-    },
-    {
-      "version": "1.1.0.0",
-      "product": "CFM"
     }
   ],
   "services": [
@@ -155,43 +147,6 @@
         "name" : "maxClientCnxns",
         "value" : "0"
       } ],
-          "base": true
-        }
-      ]
-    },
-    {
-      "refName": "schemaregistry",
-      "serviceType": "SCHEMAREGISTRY",
-      "serviceConfigs": [
-        {
-          "name": "database_type",
-          "variable": "schemaregistry-database_type"
-        },
-        {
-          "name": "database_port",
-          "variable": "schemaregistry-database_port"
-        },
-        {
-          "name": "database_host",
-          "variable": "schemaregistry-database_host"
-        },
-        {
-          "name": "database_name",
-          "variable": "schemaregistry-database_name"
-        },
-        {
-          "name": "database_password",
-          "variable": "schemaregistry-database_password"
-        },
-        {
-          "name": "database_user",
-          "variable": "schemaregistry-database_user"
-        }
-      ],
-      "roleConfigGroups": [
-        {
-          "refName": "schemaregistry-SCHEMA_REGISTRY_SERVER-BASE",
-          "roleType": "SCHEMA_REGISTRY_SERVER",
           "base": true
         }
       ]
@@ -466,7 +421,6 @@
         "ranger-RANGER_ADMIN-BASE",
         "ranger-RANGER_TAGSYNC-BASE",
         "ranger-RANGER_USERSYNC-BASE",
-        "schemaregistry-SCHEMA_REGISTRY_SERVER-BASE",
         "solr-SOLR_SERVER-BASE",
         "spark_on_yarn-GATEWAY-BASE",
         "spark_on_yarn-SPARK_YARN_HISTORY_SERVER-BASE",
@@ -555,30 +509,6 @@
       {
         "name": "ranger-rangerusersync_user_password",
         "value": "supersecret1"
-      },
-     {
-        "name": "schemaregistry-database_host",
-        "value": "YourHostname"
-      },
-      {
-        "name": "schemaregistry-database_name",
-        "value": "registry"
-      },
-      {
-        "name": "schemaregistry-database_password",
-        "value": "supersecret1"
-      },
-      {
-        "name": "schemaregistry-database_port",
-        "value": "5432"
-      },
-      {
-        "name": "schemaregistry-database_type",
-        "value": "postgresql"
-      },
-      {
-        "name": "schemaregistry-database_user",
-        "value": "registry"
       }
     ]
   }
