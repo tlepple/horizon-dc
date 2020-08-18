@@ -28,3 +28,7 @@ hadoop fs -mkdir /user/diane_csr
 hadoop fs -chown diane_csr:hadoop /user/diane_csr
 hadoop fs -mkdir /user/log_monitor
 hadoop fs -chown log_monitor:hadoop /user/log_monitor
+hadoop fs -mkdir /user/iadm_user
+hadoop fs -chown iadm_user:hadoop /user/iadm_user
+hadoop fs -mkdir /user/oadm_user
+hadoop fs -chown oadm_user:hadoop /user/oadm_user

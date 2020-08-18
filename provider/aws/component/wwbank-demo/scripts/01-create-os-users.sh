@@ -7,6 +7,8 @@ groupadd contractor
 groupadd csr
 groupadd etl
 groupadd intern
+groupadd iadm_analyst
+groupadd oadm_analyst
 
 
 useradd -g hadoop admin
@@ -30,6 +32,8 @@ useradd -g hr kate_hr
 useradd -g hr sasha_eu_hr
 useradd -g hr ivanna_eu_hr
 useradd -g dpo michelle_dpo
+useradd -g iadm_analyst iadm_user
+useradd -g oadm_analyst oadm_user
 
 #below users should also be added to us_employee or eu_employee
 usermod -a -G us_employee joe_analyst
@@ -47,5 +51,7 @@ passwd joe_analyst < passwd.txt
 passwd ivanna_eu_hr < passwd.txt
 passwd etl_user < passwd.txt
 passwd scott_intern < passwd.txt
+passwd iadm_user < passwd.txt
+passwd oadm_user < passwd.txt
 
 rm -f passwd.txt

@@ -127,6 +127,8 @@ kadmin.local -q "addprinc -randkey mark_bizdev/$(hostname -f)@${kdc_realm}"
 kadmin.local -q "addprinc -randkey john_finance/$(hostname -f)@${kdc_realm}"
 kadmin.local -q "addprinc -randkey ivanna_eu_hr/$(hostname -f)@${kdc_realm}"
 kadmin.local -q "addprinc -randkey etl_user/$(hostname -f)@${kdc_realm}"
+kadmin.local -q "addprinc -randkey iadm_user/$(hostname -f)@${kdc_realm}"
+kadmin.local -q "addprinc -randkey oadm_user/$(hostname -f)@${kdc_realm}"
 
 echo
 echo "Creating user keytabs..."
@@ -140,7 +142,9 @@ kadmin.local -q "xst -k mark_bizdev.keytab mark_bizdev/$(hostname -f)@${kdc_real
 kadmin.local -q "xst -k john_finance.keytab john_finance/$(hostname -f)@${kdc_realm}"
 kadmin.local -q "xst -k ivanna_eu_hr.keytab ivanna_eu_hr/$(hostname -f)@${kdc_realm}"
 kadmin.local -q "xst -k kate_hr.keytab kate_hr/$(hostname -f)@${kdc_realm}"
-kadmin.local -q "xst -k etl_user.keytab etl_user/$(hostname -f)@${kdc_realm}" 
+kadmin.local -q "xst -k etl_user.keytab etl_user/$(hostname -f)@${kdc_realm}"
+kadmin.local -q "xst -k iadm_user.keytab iadm_user/$(hostname -f)@${kdc_realm}"
+kadmin.local -q "xst -k oadm_user.keytab oadm_user/$(hostname -f)@${kdc_realm}"
 chmod +r *.keytab
 
 echo
