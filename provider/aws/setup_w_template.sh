@@ -37,7 +37,7 @@ TEMPLATE=$1
 ###########################################################################################################
 CLDR_MGR_BASEURL="https://archive.cloudera.com/cm7"
 #CLDR_MGR_VER_URL="$CLDR_MGR_BASEURL/7.0.3/redhat7/yum"
-CLDR_MGR_VER_URL="$CLDR_MGR_BASEURL/7.1.1/redhat7/yum"
+CLDR_MGR_VER_URL="$CLDR_MGR_BASEURL/7.1.3/redhat7/yum"
 
 wget $CLDR_MGR_VER_URL/cloudera-manager-trial.repo -P /etc/yum.repos.d/
 
