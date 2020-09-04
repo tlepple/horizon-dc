@@ -697,7 +697,7 @@
       },
       {
         "name": "nifitoolkitca-nifi.toolkit.tls.ca.server.token",
-        "value": "supersecret1"
+        "value": "Nifirockstheboat"
       },
       {
         "name": "schemaregistry-database_host",
