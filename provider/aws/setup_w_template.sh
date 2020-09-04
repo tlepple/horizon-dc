@@ -118,8 +118,8 @@ sed -i "s/HOSTNAME=.*/HOSTNAME=`hostname`/" /etc/sysconfig/network
 #systemctl disable firewalld
 #systemctl stop firewalld
 
-echo "set enforce step"
-setenforce 0
+#echo "set enforce step"
+#setenforce 0
 echo "update selinux"
 sed -i 's/SELINUX=.*/SELINUX=disabled/' /etc/selinux/config
 
