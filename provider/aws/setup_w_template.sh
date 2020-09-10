@@ -370,8 +370,8 @@ pip install --upgrade pip cm_client
 sed -i "s/YourHostname/`hostname -f`/g" $TEMPLATE
 sed -i "s/YourHostname/`hostname -f`/g" scripts/create_cluster.py
 # CDSW items
-sed -i "s/YourCDSWDomain/cdsw.$PUBLIC_IP.nip.io/g" $TEMPLATE
-#sed -i "s/YourCDSWDomain/cdsw.$PRIVATE_IP.nip.io/g" $TEMPLATE
+sed -i "s/YourCDSWDomain/$PUBLIC_IP/g" $TEMPLATE
+#sed -i "s/YourCDSWDomain/$PRIVATE_IP/g" $TEMPLATE
 sed -i "s/YourPrivateIP/$PRIVATE_IP/g" $TEMPLATE
 
 ###########################################################################################################
