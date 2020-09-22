@@ -45,3 +45,7 @@ echo
 #echo services connections
 . ${starting_dir}/bin/echo_service_conns.sh
 
+
+#echo private services connections
+. ${starting_dir}/bin/echo_private_service_conns.sh
+
